@@ -4,6 +4,7 @@ import Loading from '../components/client/Loading';
 import Signin from '../components/client/Signin';
 import NavBar from '../components/client/NavBar';
 import RegisterForm from '../components/client/RegisterForm';
+import AdminNavBarAuth from '../components/admin/AdminNavBar';
 
 const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) => {
   const { user, userLoading, updateUser } = useAuth();
@@ -14,6 +15,15 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
   }
 
   // what the user should see if they are logged in
+  if (user.isAdmin === 'true') {
+    return (
+      <>
+        <AdminNavBarAuth />
+        <div className="container">{'valid' in user ? <RegisterForm user={user} updateUser={updateUser} /> : <Component {...pageProps} />} </div>
+      </>
+    );
+  }
+
   if (user) {
     return (
       <>
