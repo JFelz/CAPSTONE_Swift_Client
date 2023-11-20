@@ -3,13 +3,12 @@ import 'firebase/auth';
 import { clientCredentials } from './client';
 
 const checkUser = (uid) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/customers/${uid}`, {
+  fetch(`https://localhost:7261/users/${uid}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      'Access-Control-Allow-Origin': 'https://localhost:7261',
-
+      'Access-Control-Allow-Origin': 'https://localhost:3000',
     },
   })
     .then((resp) => resolve(resp.json()))
@@ -23,6 +22,7 @@ const registerUser = (userInfo) => new Promise((resolve, reject) => {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
+      'Access-Control-Allow-Origin': 'https://localhost:7261',
     },
   })
     .then((resp) => resolve(resp.json()))
