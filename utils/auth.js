@@ -3,16 +3,28 @@ import 'firebase/auth';
 import { clientCredentials } from './client';
 
 const checkUser = (uid) => new Promise((resolve, reject) => {
-  fetch(`https://localhost:7261/users/${uid}`, {
+  fetch(`https://localhost:7261/users/auth/${uid}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      Accept: 'application/json',
-      'Access-Control-Allow-Origin': 'https://localhost:3000',
+      'Access-Control-Allow-Origin': 'https://localhost:7261',
     },
   })
-    .then((resp) => resolve(resp.json()))
-    .catch(reject);
+    .then((response) => {
+      if (!response.ok) {
+        console.error(`Request Failed with status: ${response.status}`);
+        response.text().then((errorText) => {
+          console.error(`Error Message: ${errorText}`);
+        });
+        reject(new Error('Request Failed'));
+      }
+      return response.json();
+    })
+    .then((data) => resolve(data))
+    .catch((error) => {
+      console.error('Error:', error);
+      reject(error);
+    });
 });
 
 const registerUser = (userInfo) => new Promise((resolve, reject) => {
@@ -22,7 +34,7 @@ const registerUser = (userInfo) => new Promise((resolve, reject) => {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      'Access-Control-Allow-Origin': 'https://localhost:7261',
+      'Access-Control-Allow-Origin': 'https://localhost:3000',
     },
   })
     .then((resp) => resolve(resp.json()))

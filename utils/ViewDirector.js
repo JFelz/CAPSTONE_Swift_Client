@@ -9,13 +9,14 @@ import AdminNavBarAuth from '../components/admin/AdminNavBar';
 const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) => {
   const { user, userLoading, updateUser } = useAuth();
 
+  console.log(user);
   // if user state is null, then show loader
   if (userLoading) {
     return <Loading />;
   }
 
   // what the user should see if they are logged in
-  if (user.isAdmin === 'true') {
+  if (user.isAdmin === true) {
     return (
       <>
         <AdminNavBarAuth />
@@ -24,7 +25,7 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
     );
   }
 
-  if (user) {
+  if (user.isAdmin === false) {
     return (
       <>
         <NavBar /> {/* NavBar only visible if user is logged in and is in every view */}
