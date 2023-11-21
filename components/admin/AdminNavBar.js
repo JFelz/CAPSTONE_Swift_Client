@@ -32,13 +32,16 @@ export default function AdminNavBarAuth() {
             }}
           >
             <Link passHref href="/">
-              <Nav.Link>Admin Home</Nav.Link>
+              <Nav.Link>Dashboard</Nav.Link>
             </Link>
-            <Link passHref href="/finance/overview">
-              <Nav.Link>Admin Shop</Nav.Link>
+            <Link passHref href="/admin/product">
+              <Nav.Link>Products</Nav.Link>
+            </Link>
+            <Link passHref href="/admin/order">
+              <Nav.Link style={{ width: '100px' }}>Orders</Nav.Link>
             </Link>
             <Link passHref href="/MyProducts">
-              <Nav.Link style={{ width: '100px' }}>My Store</Nav.Link>
+              <Nav.Link style={{ width: '100px' }}>Customers</Nav.Link>
             </Link>
             <Container style={{
               display: 'flex',
