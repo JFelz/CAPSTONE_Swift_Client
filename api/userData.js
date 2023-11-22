@@ -1,5 +1,5 @@
-const getAllProducts = () => new Promise((resolve, reject) => {
-  fetch('https:localhost:7261/products', {
+const getUsersUID = (uid) => new Promise((resolve, reject) => {
+  fetch(`https:localhost:7261/users/auth/${uid}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -10,8 +10,8 @@ const getAllProducts = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getSingleProducts = (Id) => new Promise((resolve, reject) => {
-  fetch(`https:localhost:7261/products/${Id}`, {
+const getSingleUser = (Id) => new Promise((resolve, reject) => {
+  fetch(`https:localhost:7261/users/byIden/${Id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -34,27 +34,22 @@ const deleteProduct = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const createNewProducts = (payload) => new Promise((resolve, reject) => {
-  fetch('https:localhost:7261/products/new', {
+const registerNewUser = (payload) => new Promise((resolve, reject) => {
+  fetch('https:localhost:7261/register', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(payload),
   })
-    .then(async (response) => {
-      let data;
-      if (response.ok) {
-        data = await response.json();
-        resolve(data);
-      }
-    })
+    .then((response) => response.json())
+    .then(resolve)
     .catch(reject);
 });
 
 export {
-  getAllProducts,
-  getSingleProducts,
-  createNewProducts,
+  registerNewUser,
+  getUsersUID,
+  getSingleUser,
   deleteProduct,
 };
