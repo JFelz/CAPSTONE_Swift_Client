@@ -52,9 +52,28 @@ const createNewProducts = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const updateProducts = (id, payload) => new Promise((resolve, error) => {
+  fetch(`https:localhost:7261/products/update/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then(async (response) => {
+      let data;
+      if (response.ok) {
+        data = await response.json();
+        resolve(data);
+      }
+    })
+    .catch(error.message);
+});
+
 export {
   getAllProducts,
   getSingleProducts,
   createNewProducts,
+  updateProducts,
   deleteProduct,
 };

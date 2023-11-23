@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 import { Button, Card } from 'react-bootstrap';
 import { deleteProduct } from '../../api/productData';
 
@@ -77,7 +78,9 @@ export default function ProductCard({ productObj }) {
             <Card.Text style={{ width: '70px', color: '#7BD45C' }}>USD ${productObj.price}</Card.Text>
           </Card.Body>
         </Card.Body>
-        <Button> Edit </Button>
+        <Link href={`/admin/product/edit/${productObj.id}`} passHref>
+          <Button> Edit </Button>
+        </Link>
         <Button variant="danger" onClick={deleteCurrentProduct}> Delete </Button>
       </Card>
     </>
