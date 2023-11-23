@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { getSingleProducts } from '../../../../api/productData';
-import ProductsPage from '../product';
+import ProductsPage from '../main';
 
 export default function EditProduct() {
   const [editProduct, setEditProduct] = useState();

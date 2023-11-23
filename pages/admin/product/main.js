@@ -65,7 +65,7 @@ export default function ProductsPage({ editProduct }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (editProduct?.id) {
-      updateProducts(editProduct.id, productFormData).then(() => router.push('/admin/order'));
+      updateProducts(editProduct.id, productFormData).then(() => router.push('/admin/product/main'));
     } else {
       setProductFormData((prevState) => ({
         ...prevState,
