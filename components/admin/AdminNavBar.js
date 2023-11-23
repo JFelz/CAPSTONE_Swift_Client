@@ -34,7 +34,7 @@ export default function AdminNavBarAuth() {
             <Link passHref href="/">
               <Nav.Link>Dashboard</Nav.Link>
             </Link>
-            <Link passHref href="/admin/product">
+            <Link passHref href="/admin/product/product">
               <Nav.Link>Products</Nav.Link>
             </Link>
             <Link passHref href="/admin/order">

@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import {
   Button, Form, Modal, FloatingLabel,
 } from 'react-bootstrap';
-import { createNewProducts, getAllProducts } from '../../api/productData';
-import ProductCard from '../../components/admin/AdminProductCard';
-import { getUsersUID } from '../../api/userData';
-import { useAuth } from '../../utils/context/authContext';
+import { createNewProducts, getAllProducts, updateProducts } from '../../../api/productData';
+import ProductCard from '../../../components/admin/AdminProductCard';
+import { getUsersUID } from '../../../api/userData';
+import { useAuth } from '../../../utils/context/authContext';
 // import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
-  adminId: 0,
+  adminId: null,
   title: '',
   description: '',
   category: '',
@@ -24,10 +25,11 @@ const initialState = {
   imageUrl3: '',
 };
 
-export default function ProductsPage() {
+export default function ProductsPage({ editProduct }) {
   const [show, setShow] = useState(false);
   const [productFormData, setProductFormData] = useState(initialState);
   const [currentUser, setCurrentUser] = useState({});
+  const router = useRouter();
   const { user } = useAuth();
   const [products, setProducts] = useState();
 
@@ -57,22 +59,33 @@ export default function ProductsPage() {
   };
 
   console.log('current user:', currentUser);
+  console.log('current product form data', productFormData);
+  console.log('editProduct Obj:', editProduct);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setProductFormData((prevState) => ({
-      ...prevState,
-      adminId: currentUser.id,
-    }));
-    createNewProducts(productFormData);
-    console.log('submitted');
-    window.location.reload();
+    if (editProduct?.id) {
+      updateProducts(editProduct.id, productFormData).then(() => router.push('/admin/order'));
+    } else {
+      setProductFormData((prevState) => ({
+        ...prevState,
+        adminId: currentUser.id,
+      }));
+      createNewProducts(productFormData);
+      console.log('submitted');
+      window.location.reload();
+    }
   };
 
   useEffect(() => {
     getProducts();
     getUserId();
-  }, []);
+
+    if (editProduct.id) {
+      setProductFormData(editProduct);
+      console.log('checking to see if it saves', productFormData);
+    }
+  }, [editProduct.id]);
   // Create button will route to a new page (or modal) to fill in information.
 
   // Get All products created by Admin
@@ -83,17 +96,12 @@ export default function ProductsPage() {
 
   // Delete function is created in the child component below
 
-  // handlechange is where you grab user input
-
-  // handleSubmit is where you submit total data as a payload through API
-
   return (
     <>
       <div>
-        <Button onClick={handleShow}>Add Product to Shop</Button>
+        {editProduct.id ? <Button variant="warning" onClick={handleShow}> Edit Product in Store </Button> : <Button variant="primary" onClick={handleShow}> Add Product to Store </Button> }
       </div>
       <div>
-        <h4> Render Product Cards with Edit and Delete functions</h4>
         {products?.map((prod) => <ProductCard productObj={prod} key={prod.id} />) }
       </div>
       <Modal show={show} onHide={handleClose} style={{ color: 'black' }}>
@@ -230,9 +238,7 @@ export default function ProductsPage() {
           </Form>
         </Modal.Body>
         <Modal.Body>
-          <Button variant="success" onClick={handleSubmit}>
-            Create Product
-          </Button>
+          {editProduct.id ? <Button variant="warning" onClick={handleSubmit}> Edit Product </Button> : <Button variant="primary" onClick={handleSubmit}> Create Product </Button> }
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={handleClose}>
@@ -245,7 +251,8 @@ export default function ProductsPage() {
 }
 
 ProductsPage.propTypes = {
-  obj: PropTypes.shape({
+  editProduct: PropTypes.shape({
+    id: PropTypes.number,
     title: PropTypes.string,
     description: PropTypes.string,
     category: PropTypes.string,
@@ -261,5 +268,5 @@ ProductsPage.propTypes = {
 };
 
 ProductsPage.defaultProps = {
-  obj: initialState,
+  editProduct: initialState,
 };
