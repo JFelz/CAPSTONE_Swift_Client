@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { Button } from 'react-bootstrap';
+import { getSingleProducts } from '../../../api/productData';
 
-export default function DeleteMe() {
+export default function ProductViewPage() {
+  const [product, setProduct] = useState();
+  const router = useRouter();
+  const { id } = router.query;
+
+  const currentProduct = () => {
+    getSingleProducts(id).then(setProduct);
+  };
+
+  useEffect(() => {
+    currentProduct();
+  }, []);
+
   return (
     <>
       <section className="viewProduct-top-section">
@@ -19,13 +33,17 @@ export default function DeleteMe() {
           </div>
           <div className="RightSideProductPage">
             Right Side
-            <h1>Longboard Title</h1>
-            <p> Yorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis. </p>
+            <h1>{product?.title}</h1>
+            <p> {product?.description} </p>
             <div>
               <h4> Measurements </h4>
+              <p>Length: {product?.length}</p>
+              <p>Width: {product?.width}</p>
+              <p>Wheelbase: {product?.wheelbase}</p>
               <h4> Skate Spots </h4>
+              <p>{product?.skatespots}</p>
             </div>
-            <p> Price Amount </p>
+            <p> Price: ${product?.price} </p>
             <section className="ViewPageCartSection">
               <Button className="CartButton">
                 Add To Cart
