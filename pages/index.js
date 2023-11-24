@@ -1,4 +1,5 @@
-import { Button } from 'react-bootstrap';
+import React from 'react';
+import { Button } from '@mui/material';
 import { signOut } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
 
@@ -20,6 +21,8 @@ function Home() {
       <Button variant="danger" type="button" size="lg" className="copy-btn" onClick={signOut}>
         Sign Out
       </Button>
+
+      <Button variant="text">Click Me</Button>
     </div>
   );
 }

@@ -16,7 +16,7 @@ export default function AdminNavBarAuth() {
               src="/SwiftLogo.svg"
               width={135}
               height={40}
-              alt="Bleuprint"
+              alt="Swift"
             />
           </Navbar.Brand>
         </Link>

@@ -19,7 +19,7 @@ const initialState = {
   length: 0.00,
   width: 0.00,
   wheelbase: 0.00,
-  skatespots: '',
+  skateSpots: '',
   imageUrl1: '',
   imageUrl2: '',
   imageUrl3: '',
@@ -71,10 +71,14 @@ export default function ProductsPage({ editProduct }) {
         ...prevState,
         adminId: currentUser.id,
       }));
-      createNewProducts(productFormData);
-      console.log('submitted');
+      const payload = {
+        ...productFormData,
+        adminId: currentUser.id,
+      };
+      createNewProducts(payload);
       window.location.reload();
     }
+    console.log('submitted');
   };
 
   useEffect(() => {
@@ -190,8 +194,8 @@ export default function ProductsPage({ editProduct }) {
               <Form.Control
                 type="textarea"
                 placeholder="Enter Skate Spots"
-                name="skatespots"
-                value={productFormData.skatespots}
+                name="skateSpots"
+                value={productFormData.skateSpots}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -260,7 +264,7 @@ ProductsPage.propTypes = {
     length: PropTypes.number,
     width: PropTypes.number,
     wheelbase: PropTypes.number,
-    skatespots: PropTypes.string,
+    skateSpots: PropTypes.string,
     imageUrl1: PropTypes.string,
     imageUrl2: PropTypes.string,
     imageUrl3: PropTypes.string,
