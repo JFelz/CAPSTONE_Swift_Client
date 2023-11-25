@@ -34,7 +34,7 @@ export default function NavBarAuth() {
             <Link passHref href="/">
               <Nav.Link style={{ color: 'black' }}>Home</Nav.Link>
             </Link>
-            <Link passHref href="/finance/overview">
+            <Link passHref href="/client/shop/main">
               <Nav.Link style={{ color: 'black' }}>Shop</Nav.Link>
             </Link>
             <Link passHref href="/MyProducts">

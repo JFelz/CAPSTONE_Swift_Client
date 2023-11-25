@@ -86,3 +86,9 @@ width: 100%;
   color: black;
   background-color: rgb(158, 227, 84)
 }
+
+/* Sign Out */
+
+.SOButton {
+  color: red;
+}
