@@ -1,5 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Link from 'next/link';
 import {
   Navbar, Container, Nav, Button, Image,
@@ -55,17 +57,12 @@ export default function NavBarAuth() {
                   justifyContent: 'center',
                   alignItems: 'center',
                   padding: '0px',
-                  width: '120px',
+                  width: '40px',
                   marginRight: '10px',
                   color: 'black',
                 }}
                 >
-                  <Image
-                    src="/LibraryIcon.png"
-                    width={20}
-                    style={{ marginRight: '5px' }}
-                  />
-                  My Cart
+                  <ShoppingCartIcon sx={{ fontSize: 25 }} />
                 </Nav.Link>
               </Link>
               <Link passHref href="/MyCart">
@@ -75,16 +72,11 @@ export default function NavBarAuth() {
                   justifyContent: 'center',
                   alignItems: 'center',
                   padding: '0px',
-                  width: '120px',
+                  width: '40px',
                   color: 'black',
                 }}
                 >
-                  <Image
-                    src="/CartIcon.png"
-                    width={25}
-                    style={{ marginRight: '5px' }}
-                  />
-                  My Profile
+                  <AccountCircleIcon sx={{ fontSize: 25 }} />
                 </Nav.Link>
               </Link>
             </Container>
