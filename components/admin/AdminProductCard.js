@@ -78,6 +78,9 @@ export default function ProductCard({ productObj }) {
             <Card.Text style={{ width: '70px', color: '#7BD45C' }}>USD ${productObj.price}</Card.Text>
           </Card.Body>
         </Card.Body>
+        <Link href={`/admin/product/${productObj.id}`} passHref>
+          <Button variant="info"> Preview </Button>
+        </Link>
         <Link href={`/admin/product/edit/${productObj.id}`} passHref>
           <Button> Edit </Button>
         </Link>

@@ -13,10 +13,10 @@ export default function NavBarAuth() {
         <Link passHref href="/">
           <Navbar.Brand style={{ color: '#35CEB3' }}>
             <Image
-              src="/captitle.png"
+              src="/SwiftLogo.svg"
               width={135}
               height={40}
-              alt="Bleuprint"
+              alt="Swift"
             />
           </Navbar.Brand>
         </Link>
@@ -32,13 +32,13 @@ export default function NavBarAuth() {
             }}
           >
             <Link passHref href="/">
-              <Nav.Link>Marketplace</Nav.Link>
+              <Nav.Link style={{ color: 'black' }}>Home</Nav.Link>
             </Link>
-            <Link passHref href="/finance/overview">
-              <Nav.Link>Analytics</Nav.Link>
+            <Link passHref href="/client/shop/main">
+              <Nav.Link style={{ color: 'black' }}>Shop</Nav.Link>
             </Link>
             <Link passHref href="/MyProducts">
-              <Nav.Link style={{ width: '100px' }}>My Store</Nav.Link>
+              <Nav.Link style={{ width: '100px', color: 'black' }}> About Us </Nav.Link>
             </Link>
             <Container style={{
               display: 'flex',
@@ -57,6 +57,7 @@ export default function NavBarAuth() {
                   padding: '0px',
                   width: '120px',
                   marginRight: '10px',
+                  color: 'black',
                 }}
                 >
                   <Image
@@ -64,7 +65,7 @@ export default function NavBarAuth() {
                     width={20}
                     style={{ marginRight: '5px' }}
                   />
-                  My Library
+                  My Cart
                 </Nav.Link>
               </Link>
               <Link passHref href="/MyCart">
@@ -74,7 +75,8 @@ export default function NavBarAuth() {
                   justifyContent: 'center',
                   alignItems: 'center',
                   padding: '0px',
-                  width: '62px',
+                  width: '120px',
+                  color: 'black',
                 }}
                 >
                   <Image
@@ -82,7 +84,7 @@ export default function NavBarAuth() {
                     width={25}
                     style={{ marginRight: '5px' }}
                   />
-                  Cart
+                  My Profile
                 </Nav.Link>
               </Link>
             </Container>
