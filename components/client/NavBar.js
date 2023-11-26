@@ -50,7 +50,7 @@ export default function NavBarAuth() {
               width: '40vw',
             }}
             >
-              <Link passHref href="/MyLibrary">
+              <Link passHref href="/client/cart/view">
                 <Nav.Link style={{
                   display: 'flex',
                   flexDirection: 'row',
