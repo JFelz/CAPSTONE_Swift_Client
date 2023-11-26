@@ -3,14 +3,25 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Button, Image, Container } from 'react-bootstrap';
 import { getSingleProducts } from '../../../api/productData';
+import { useAuth } from '../../../utils/context/authContext';
+import { addToCart } from '../../../api/cartData';
 
 export default function ClientProductViewPage() {
   const [product, setProduct] = useState();
   const router = useRouter();
+  const { user } = useAuth();
   const { id } = router.query;
 
   const currentProduct = () => {
     getSingleProducts(id).then(setProduct);
+  };
+
+  const handleSubmit = () => {
+    const payload = {
+      ProductId: product.id,
+      CustomerUid: user.uid,
+    };
+    addToCart(payload);
   };
 
   useEffect(() => {
@@ -66,7 +77,7 @@ export default function ClientProductViewPage() {
               </div>
               <p> Price: ${product?.price} </p>
               <section className="ViewPageCartSection">
-                <Button className="CartButton">
+                <Button className="CartButton" onClick={handleSubmit}>
                   Add To Cart
                 </Button>
               </section>
