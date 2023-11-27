@@ -16,13 +16,10 @@ export default function ClientProductViewPage() {
     getSingleProducts(id).then(setProduct);
   };
 
-  const handleSubmit = () => {
-    const payload = {
-      ProductId: product.id,
-      CustomerUid: user.uid,
-    };
-    addToCart(payload);
+  const AddToCartFunction = () => {
+    addToCart(user.uid, product.id);
   };
+  console.log('Product Id:', product?.id);
 
   useEffect(() => {
     currentProduct();
@@ -77,7 +74,7 @@ export default function ClientProductViewPage() {
               </div>
               <p> Price: ${product?.price} </p>
               <section className="ViewPageCartSection">
-                <Button className="CartButton" onClick={handleSubmit}>
+                <Button className="CartButton" onClick={AddToCartFunction}>
                   Add To Cart
                 </Button>
               </section>
