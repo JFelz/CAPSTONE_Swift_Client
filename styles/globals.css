@@ -133,3 +133,11 @@ width: 100%;
 .PlaceOrderBtn {
   width: 100%;
 }
+
+/* Checkout Form */
+
+.SplitInputFields {
+  display: flex;
+  flex-direction: row;
+  height: 40px
+}
