@@ -29,14 +29,14 @@ const addToCart = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const deleteCartProduct = (productId, UID) => new Promise((resolve, reject) => {
-  fetch(`https://localhost:7261/cart/${UID}/${productId}/delete`, {
+const deleteCartProduct = (UID, productId) => new Promise((resolve, reject) => {
+  fetch(`https://localhost:7261/cart/${UID}/delete/${productId}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
   })
-    .then((response) => response.text())
+    .then((response) => response.json())
     .then(resolve)
     .catch(reject);
 });
