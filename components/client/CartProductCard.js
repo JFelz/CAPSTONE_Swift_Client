@@ -12,7 +12,7 @@ export default function CartProductCard({ productObj }) {
 
   const deleteProd = () => {
     if (window.confirm(`Delete ${productObj.title}?`)) {
-      deleteCartProduct(productObj.id, user.uid);
+      deleteCartProduct(user.uid, productObj.id);
     }
   };
 
