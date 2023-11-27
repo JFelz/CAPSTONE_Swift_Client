@@ -11,13 +11,12 @@ const getCartUserUID = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const addToCart = (payload) => new Promise((resolve, reject) => {
-  fetch('https://localhost:7261/cart/new', {
+const addToCart = (UID, ProductId) => new Promise((resolve, reject) => {
+  fetch(`https://localhost:7261/cart/${UID}/list/add/${ProductId}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(payload),
   })
     .then(async (response) => {
       let data;
