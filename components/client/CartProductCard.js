@@ -2,16 +2,21 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Button, Card } from 'react-bootstrap';
-import { deleteProduct, getSingleProducts } from '../../api/productData';
+import { getSingleProducts } from '../../api/productData';
+import { deleteCartProduct } from '../../api/cartData';
+import { useAuth } from '../../utils/context/authContext';
 
 export default function CartProductCard({ productObj }) {
   const [materialObj, setMaterialObj] = useState([]);
+  const { user } = useAuth();
 
-  const deleteCurrentProduct = () => {
+  const deleteProd = () => {
     if (window.confirm(`Delete ${productObj.title}?`)) {
-      deleteProduct(productObj.id);
+      deleteCartProduct(productObj.id, user.uid);
     }
   };
+
+  console.log(user.uid, productObj.id);
 
   const getMaterialObj = () => {
     getSingleProducts(productObj.id).then(setMaterialObj);
@@ -88,13 +93,10 @@ export default function CartProductCard({ productObj }) {
             <Card.Text style={{ width: '70px', color: '#7BD45C' }}>USD ${productObj.price}</Card.Text>
           </Card.Body>
         </Card.Body>
-        <Link href={`/admin/product/${productObj.id}`} passHref>
+        <Link href={`/client/shop/${productObj.id}`} passHref>
           <Button variant="info"> Preview </Button>
         </Link>
-        <Link href={`/admin/product/edit/${productObj.id}`} passHref>
-          <Button> Edit </Button>
-        </Link>
-        <Button variant="danger" onClick={deleteCurrentProduct}> Delete </Button>
+        <Button variant="danger" onClick={deleteProd}> Delete </Button>
       </Card>
     </>
   );

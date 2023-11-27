@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 const getCartUserUID = (uid) => new Promise((resolve, reject) => {
-  fetch(`https:localhost:7261/cart/${uid}`, {
+  fetch(`https://localhost:7261/cart/${uid}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -12,7 +12,7 @@ const getCartUserUID = (uid) => new Promise((resolve, reject) => {
 });
 
 const addToCart = (payload) => new Promise((resolve, reject) => {
-  fetch('https:localhost:7261/cart/new', {
+  fetch('https://localhost:7261/cart/new', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -29,15 +29,15 @@ const addToCart = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const deleteCartProduct = (uid, id) => new Promise((resolve, reject) => {
-  fetch(`https:localhost:7261/cart/${id}/delete/`, {
+const deleteCartProduct = (productId, UID) => new Promise((resolve, reject) => {
+  fetch(`https://localhost:7261/cart/${UID}/${productId}/delete`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
   })
-    .then((response) => response.json())
-    .then((data) => resolve(data))
+    .then((response) => response.text())
+    .then(resolve)
     .catch(reject);
 });
 

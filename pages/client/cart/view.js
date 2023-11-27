@@ -8,16 +8,17 @@ import { getCartUserUID } from '../../../api/cartData';
 import CartProductCard from '../../../components/client/CartProductCard';
 
 export default function Cart() {
-  const [currentProduct, setCurrentProducts] = useState();
+  const [currentProduct, setCurrentProducts] = useState([]);
   const { user } = useAuth();
 
   const getCartProducts = () => {
     getCartUserUID(user.uid).then(setCurrentProducts);
   };
 
+  console.log(currentProduct);
+
   useEffect(() => {
     getCartProducts();
-    console.log(currentProduct);
   }, []);
 
   return (
@@ -31,7 +32,7 @@ export default function Cart() {
       </section>
       <Card className="cartSplit" style={{ boxShadow: '0px 0px 0px 0px' }}>
         <CardContent className="LeftSideCartPage">
-          {currentProduct?.map((prod) => <CartProductCard key={prod.id} productObj={prod} />)}
+          {currentProduct[0]?.map((prod) => <CartProductCard key={prod.id} productObj={prod} />)}
         </CardContent>
         <CardContent className="RightSideCartPage">
           <div> 50 </div>
