@@ -7,7 +7,7 @@ import { Form } from 'react-bootstrap';
 import { useAuth } from '../../../utils/context/authContext';
 import { getCartUserUID } from '../../../api/cartData';
 import CartProductCard from '../../../components/client/CartProductCard';
-import { createOrder } from '../../../api/orderData';
+// import { createOrder } from '../../../api/orderData';
 
 const initialState = {
   customerUid: '',
@@ -23,17 +23,26 @@ const initialState = {
   zipcode: 0,
   dateTime: Date.now,
   revenue: 0.00,
+  status: false,
   shippingMethod: '',
+  paymentType: '',
 };
 
 export default function Cart() {
   const [currentProduct, setCurrentProducts] = useState([]);
   const [orderFormData, setOrderFormData] = useState(initialState);
+  const [submitted, setSubmitted] = useState(false);
   const { user } = useAuth();
 
   const getCartProducts = () => {
     getCartUserUID(user.uid).then(setCurrentProducts);
   };
+
+  const toggleBtnVisibility = () => {
+    setSubmitted(true);
+  };
+
+  console.log(submitted);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,21 +53,40 @@ export default function Cart() {
     console.log(orderFormData);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const payload = {
-      ...orderFormData,
-      customerUid: user.uid,
-      orderStatusId: 1,
-    };
-    createOrder(payload);
-    window.location.reload();
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const payload = {
+  //     ...orderFormData,
+  //     customerUid: user.uid,
+  //     status: true,
+  //   };
+  //   createOrder(payload).then(setSubmitted(true));
+  // };
 
-  console.log(currentProduct);
+  const handleCheckout = (e) => {
+    e.preventDefault();
+
+    // ** This will be in the confirmation page **
+
+    // Retrieve order based off UID and active status - store in state
+
+    // Retrieve cart data and store it in state
+
+    // If statement to check if order exists in state
+
+    /* if true: loop through the cart state.
+    if (orderState) {
+      foreach(var x in cartState) {
+      addProductsToOrder(user.uid, x.Id)
+      }
+      router.push('client/order/confirmationPage');
+    }
+     */
+  };
 
   useEffect(() => {
     getCartProducts();
+    handleCheckout();
   }, []);
 
   return (
@@ -158,15 +186,15 @@ export default function Cart() {
             <Form.Select
               aria-label="Floating label select example"
               name="paymentId"
-              value={orderFormData.paymentId}
+              value={orderFormData.paymentType}
               onChange={handleChange}
             >
               <option>Choose a Payment option</option>
-              <option value={1}>Visa</option>
-              <option value={2}>Mastercard</option>
-              <option value={3}>Amex</option>
-              <option value={4}>Apple Pay</option>
-              <option value={5}>Venmo</option>
+              <option value="visa">Visa</option>
+              <option value="mastercard">Mastercard</option>
+              <option value="american express">Amex</option>
+              <option value="apple pay">Apple Pay</option>
+              <option value="venmo">Venmo</option>
             </Form.Select>
             <br />
             <Form.Label> Shipping Details</Form.Label>
@@ -177,9 +205,9 @@ export default function Cart() {
               onChange={handleChange}
             >
               <option>Choose a Shipping method</option>
-              <option value="Standard">Standard</option>
-              <option value="Express">Express</option>
-              <option value="Overnight">Overnight</option>
+              <option value="standard">Standard</option>
+              <option value="express">Express</option>
+              <option value="overnight">Overnight</option>
             </Form.Select>
             <li>Standard: Free (3-5 Business Days)</li>
             <li>Express +$35 (1-2 Business Days)</li>
@@ -191,7 +219,18 @@ export default function Cart() {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="medium" variant="contained" className="PlaceOrderBtn" onClick={handleSubmit}>Place Order</Button>
+            {!submitted ? (<Button size="medium" id="PlaceOrder" variant="contained" className="PlaceOrderBtn" onClick={toggleBtnVisibility}>Place Order</Button>) : (
+              <Button
+                size="medium"
+                id="PlaceOrder"
+                variant="outlined"
+                className="CheckoutBtn"
+                style={{
+                  color: 'white', backgroundColor: '#4cd480', border: '0px', boxShadow: ' #bebebe 2px 2px 2px 0px',
+                }}
+              >Proceed to Checkout
+              </Button>
+            )}
           </CardActions>
         </CardContent>
       </Card>

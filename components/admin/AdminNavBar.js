@@ -37,7 +37,7 @@ export default function AdminNavBarAuth() {
             <Link passHref href="/admin/product/main">
               <Nav.Link style={{ color: 'black', width: '100px' }}>Products</Nav.Link>
             </Link>
-            <Link passHref href="/admin/order">
+            <Link passHref href="/admin/order/main">
               <Nav.Link style={{ color: 'black', width: '100px' }}>Orders</Nav.Link>
             </Link>
             <Link passHref href="/MyProducts">

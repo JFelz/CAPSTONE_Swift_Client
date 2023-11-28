@@ -39,7 +39,7 @@ export default function NavBarAuth() {
             <Link passHref href="/client/shop/main">
               <Nav.Link style={{ color: 'black' }}>Shop</Nav.Link>
             </Link>
-            <Link passHref href="/MyProducts">
+            <Link passHref href="/client/order/confirmation">
               <Nav.Link style={{ width: '100px', color: 'black' }}> About Us </Nav.Link>
             </Link>
             <Container style={{
