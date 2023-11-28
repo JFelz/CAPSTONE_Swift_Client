@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import { Button, Card } from 'react-bootstrap';
+import DeleteIcon from '@mui/icons-material/Delete';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import {
-  Box, CardContent, CardMedia, Typography,
+  Box, Button, Card, CardContent, CardMedia, Typography,
 } from '@mui/material';
 import { getSingleProducts } from '../../api/productData';
 import { deleteCartProduct } from '../../api/cartData';
@@ -32,31 +33,53 @@ export default function CartProductCard({ productObj }) {
 
   return (
     <>
-      <Card sx={{ display: 'flex' }}>
-        <Box sx={{ display: 'flex', flexDirection: 'flex' }}>
-          <CardMedia
-            component="img"
-            sx={{ width: 151 }}
-            image={productObj.imageUrl1}
-            alt={productObj.title}
-          />
-          <CardContent sx={{ flex: '1 0 auto', display: 'column', alignItems: 'flex-end' }}>
-            <Typography component="div" style={{ fontSize: '1em' }}>
-              {productObj.title}
+      <Card sx={{ display: 'flex', width: '100%', margin: '.2em' }}>
+        <CardMedia
+          component="img"
+          style={{ height: '5em', width: '5em' }}
+          image={productObj.imageUrl1}
+          alt={productObj.title}
+        />
+        <CardContent sx={{
+          flex: '1 0 auto', display: 'column',
+        }}
+        >
+          <Typography component="div" style={{ fontSize: '1em' }}>
+            {productObj.title}
+          </Typography>
+          <Typography variant="subtitle1" color="text.secondary" component="div">
+            {productObj.category}
+          </Typography>
+        </CardContent>
+        <section style={{
+          display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', width: '10em',
+        }}
+        >
+          <Box style={{ padding: '1em' }}>
+            <Typography>
+              <b>{productObj.price}</b>
             </Typography>
-            <Typography variant="subtitle1" color="text.secondary" component="div">
-              {productObj.category}
-            </Typography>
-          </CardContent>
-          <Box sx={{
-            display: 'flex', alignItems: 'center', pl: 1, pb: 1,
-          }}
-          />
+          </Box>
           <Link href={`/client/shop/${productObj.id}`} passHref>
-            <Button variant="info"> Preview </Button>
+            <Button
+              variant="outlined"
+              style={{
+                height: '3em', display: 'flex', flexDirection: 'row', alignItems: 'center',
+              }}
+            >
+              <VisibilityIcon />
+            </Button>
           </Link>
-          <Button variant="danger" onClick={deleteProd}> Delete </Button>
-        </Box>
+          <Button
+            variant="danger"
+            onClick={deleteProd}
+            style={{
+              height: '3em', display: 'flex', flexDirection: 'row', alignItems: 'center',
+            }}
+          >
+            <DeleteIcon />
+          </Button>
+        </section>
       </Card>
     </>
   );
