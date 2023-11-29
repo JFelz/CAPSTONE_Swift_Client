@@ -65,7 +65,7 @@ export default function NavBarAuth() {
                   <ShoppingCartIcon sx={{ fontSize: 25 }} />
                 </Nav.Link>
               </Link>
-              <Link passHref href="/pages/profile">
+              <Link passHref href="/client/profile">
                 <Nav.Link style={{
                   display: 'flex',
                   flexDirection: 'row',

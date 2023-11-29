@@ -150,3 +150,21 @@ width: 100%;
   color: #bebebe
   
 }
+
+/* Profile Section */
+
+.SplitProfile {
+  display: flex;
+  flex-direction: row;
+}
+
+.LeftProfile {
+  background-color: rgb(157, 0, 255);
+  width: 50%;
+  height: 100vh;
+}
+
+.RightProfile {
+  background-color: rgb(255, 0, 115);
+  width: 50%;
+}
