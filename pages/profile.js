@@ -10,6 +10,8 @@ export default function ProfilePage() {
     getUsersUID(user.uid).then(setCurrentUser);
   };
 
+  console.log(currentUser);
+
   useEffect(() => {
     getUser();
   }, []);
