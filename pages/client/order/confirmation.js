@@ -1,38 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { getProductsFromOrder, getSingleActiveOrder } from '../../../api/orderData';
-import { getCartUserUID } from '../../../api/cartData';
 import { useAuth } from '../../../utils/context/authContext';
 import ConfirmProductCard from '../../../components/client/ConfirmProductCards';
 
 export default function OrderConfirmationPage() {
   const [activeOrder, setActiveOrder] = useState();
-  const [cartData, setCartData] = useState([]);
   const [fullProd, setFullProd] = useState();
   const { user } = useAuth();
 
-  getSingleActiveOrder(user.uid).then(setActiveOrder);
+  const getOrderData = async () => {
+  //   Get newly created Order to tag products to
+    getSingleActiveOrder(user.uid).then(setActiveOrder);
 
-  const getOrderCartData = async () => {
-    // Get newly created Order to tag products to
-    // This works
-    try {
-      // Grab the products from cart and add to Order
-      await getCartUserUID(user.uid).then(setCartData);
-      await console.log('cartData:', cartData);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-
-    console.log('active order:', activeOrder);
-  };
-
-  const getProdFromOrd = () => {
-    getProductsFromOrder(user.uid).then(setFullProd);
+    getProductsFromOrder(activeOrder?.Id).then(setFullProd);
   };
 
   useEffect(() => {
-    getOrderCartData();
-    getProdFromOrd();
+    getOrderData();
   }, []);
 
   return (
@@ -44,10 +28,15 @@ export default function OrderConfirmationPage() {
         <h3> Order Details </h3>
         <p>{activeOrder?.customerName}</p>
         <p>{activeOrder?.customerEmail}</p>
+        <p>{activeOrder?.customerPhoneNumber}</p>
+        <p>Payment Type: {activeOrder?.paymentType}</p>
+        <p>Order Created: {activeOrder?.dateTime}</p>
+        <p>Shipping Method: {activeOrder?.shippingMethod}</p>
+        <p>Total: {activeOrder?.revenue}</p>
       </div>
       <div>
         <h4> Purchased Products </h4>
-        {fullProd?.map((productObj) => <ConfirmProductCard key={productObj.id} productObj={productObj} />)}
+        {fullProd?.map((orderObj) => <ConfirmProductCard key={orderObj.id} orderObj={orderObj} />)}
       </div>
     </>
   );

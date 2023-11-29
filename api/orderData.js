@@ -16,6 +16,18 @@ const createOrder = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getAllOrders = () => new Promise((resolve, reject) => {
+  fetch('https:localhost:7261/orders', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
 const getSingleOrder = (Id) => new Promise((resolve, reject) => {
   fetch(`https:localhost:7261/orders/${Id}`, {
     method: 'GET',
@@ -40,8 +52,8 @@ const getSingleActiveOrder = (UID) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getProductsFromOrder = (UID) => new Promise((resolve, reject) => {
-  fetch(`https:localhost:7261/orders/${UID}/products`, {
+const getProductsFromOrder = (Id) => new Promise((resolve, reject) => {
+  fetch(`https:localhost:7261/orders/${Id}/products`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -53,7 +65,6 @@ const getProductsFromOrder = (UID) => new Promise((resolve, reject) => {
 });
 
 const addProductToOrder = (UID, payload) => new Promise((resolve, reject) => {
-  console.log('Adding product to order:', UID, payload);
   fetch(`https://localhost:7261/orders/${UID}/products/list/${payload}`, {
     method: 'POST',
     headers: {
@@ -61,7 +72,7 @@ const addProductToOrder = (UID, payload) => new Promise((resolve, reject) => {
     },
     body: JSON.stringify(payload),
   })
-    .then((response) => response.text())
+    .then((response) => response.json())
     .then((data) => {
       console.log('Response from server:', data);
       resolve(data);
@@ -72,8 +83,41 @@ const addProductToOrder = (UID, payload) => new Promise((resolve, reject) => {
     });
 });
 
+const deleteOrder = (Id) => new Promise((resolve, reject) => {
+  fetch(`https:localhost:7261/orders/remove/${Id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+const updateOrder = (id, payload) => new Promise((resolve, error) => {
+  fetch(`https:localhost:7261/orders/update/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then(async (response) => {
+      let data;
+      if (response.ok) {
+        data = await response.json();
+        resolve(data);
+      }
+    })
+    .catch(error.message);
+});
+
 export {
   createOrder,
+  updateOrder,
+  deleteOrder,
+  getAllOrders,
   getSingleOrder,
   getSingleActiveOrder,
   addProductToOrder,

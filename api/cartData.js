@@ -40,8 +40,21 @@ const deleteCartProduct = (UID, productId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const deleteAllCart = (UID) => new Promise((resolve, reject) => {
+  fetch(`https://localhost:7261/cart/${UID}/delete/all`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
 export {
   getCartUserUID,
+  deleteAllCart,
   addToCart,
   deleteCartProduct,
 };

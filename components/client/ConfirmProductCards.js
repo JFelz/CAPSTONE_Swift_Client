@@ -4,7 +4,7 @@ import {
   Box, Card, CardContent, CardMedia, Typography,
 } from '@mui/material';
 
-export default function ConfirmProductCard({ productObj }) {
+export default function ConfirmProductCard({ orderObj }) {
   // useEffect(() => {
   // }, []);
 
@@ -14,18 +14,18 @@ export default function ConfirmProductCard({ productObj }) {
         <CardMedia
           component="img"
           style={{ height: '5em', width: '5em' }}
-          image={productObj?.imageUrl1}
-          alt={productObj?.title}
+          image={orderObj?.imageUrl1}
+          alt={orderObj?.title}
         />
         <CardContent sx={{
           flex: '1 0 auto', display: 'column',
         }}
         >
           <Typography component="div" style={{ fontSize: '1em' }}>
-            {productObj?.title}
+            {orderObj?.title}
           </Typography>
           <Typography variant="subtitle1" color="text.secondary" component="div">
-            {productObj?.category}
+            {orderObj?.category}
           </Typography>
         </CardContent>
         <section style={{
@@ -34,7 +34,7 @@ export default function ConfirmProductCard({ productObj }) {
         >
           <Box style={{ padding: '1em' }}>
             <Typography>
-              <b>{productObj?.price}</b>
+              <b>{orderObj?.price}</b>
             </Typography>
           </Box>
         </section>
@@ -44,7 +44,7 @@ export default function ConfirmProductCard({ productObj }) {
 }
 
 ConfirmProductCard.propTypes = {
-  productObj: PropTypes.shape({
+  orderObj: PropTypes.shape({
     id: PropTypes.number,
     title: PropTypes.string,
     description: PropTypes.string,
