@@ -35,7 +35,7 @@ export default function ProductViewPage() {
               fluid
             />
 
-            {/* Main image is a displayer. You have a row of buttons on the bottom. The productObj is already pulling in the images and storing it in state. On onClick command, you display X image on the main image display component.
+            {/* Main image is a displayer. You have a row of buttons on the bottom. The orderObj is already pulling in the images and storing it in state. On onClick command, you display X image on the main image display component.
 
             For an image display, you would store one image in state. The button updates that state with the new image you click.
 

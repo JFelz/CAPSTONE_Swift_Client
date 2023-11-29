@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Button, Card } from 'react-bootstrap';
-import { deleteProduct } from '../../api/productData';
+import { deleteOrder } from '../../api/orderData';
 
-export default function ProductCard({ orderObj }) {
+export default function AdminOrderCard({ orderObj }) {
   const deleteCurrentProduct = () => {
-    if (window.confirm(`Delete ${orderObj.title}?`)) {
-      deleteProduct(orderObj.id);
+    if (window.confirm(`Delete Order #${orderObj.id}?`)) {
+      deleteOrder(orderObj.id);
     }
+    window.location.reload();
   };
 
   return (
@@ -27,18 +28,10 @@ export default function ProductCard({ orderObj }) {
         borderBottomWidth: '0px',
         borderTopColor: '#383838',
         boxSizing: 'content-box',
-        backgroundColor: '#18181C',
+        backgroundColor: 'darkred',
         borderRadius: '0px',
       }}
       >
-        <Card.Img
-          src={orderObj.imageUrl1}
-          alt={orderObj.title}
-          style={{
-            height: '100%',
-            width: '7em',
-          }}
-        />
         <Card.Body style={{ marginTop: '5px' }}>
           <Card.Title
             style={{
@@ -47,7 +40,7 @@ export default function ProductCard({ orderObj }) {
               fontWeight: 'Bold',
               fontSize: '16px',
             }}
-          >{orderObj.title}
+          >{orderObj.customerName}
           </Card.Title>
           <Card.Subtitle style={{
             fontFamily: 'Poppins',
@@ -55,7 +48,7 @@ export default function ProductCard({ orderObj }) {
             color: '#979797',
             fontSize: '13px',
           }}
-          > {orderObj.category}
+          > {orderObj.customerEmail}
           </Card.Subtitle>
 
         </Card.Body>
@@ -74,14 +67,13 @@ export default function ProductCard({ orderObj }) {
             alignItems: 'end',
           }}
           >
-            <Card.Text style={{ marginBottom: '5px', width: '50px', fontFamily: 'Poppins' }}><b>Price</b></Card.Text>
-            <Card.Text style={{ width: '70px', color: '#7BD45C' }}>USD ${orderObj.price}</Card.Text>
+            <Card.Text style={{ width: '70px', color: '#7BD45C' }}>Created on: {orderObj.id}</Card.Text>
           </Card.Body>
         </Card.Body>
-        <Link href={`/admin/product/${orderObj.id}`} passHref>
+        <Link href={`/admin/order/${orderObj.id}`} passHref>
           <Button variant="info"> Preview </Button>
         </Link>
-        <Link href={`/admin/product/edit/${orderObj.id}`} passHref>
+        <Link href={`/admin/order/edit/${orderObj.id}`} passHref>
           <Button> Edit </Button>
         </Link>
         <Button variant="danger" onClick={deleteCurrentProduct}> Delete </Button>
@@ -90,14 +82,11 @@ export default function ProductCard({ orderObj }) {
   );
 }
 
-ProductCard.propTypes = {
+AdminOrderCard.propTypes = {
   orderObj: PropTypes.shape({
     id: PropTypes.number,
-    title: PropTypes.string,
-    description: PropTypes.string,
-    price: PropTypes.number,
-    category: PropTypes.string,
-    uid: PropTypes.string,
-    imageUrl1: PropTypes.string,
+    customerName: PropTypes.string,
+    customerEmail: PropTypes.string,
+    customerUid: PropTypes.string,
   }).isRequired,
 };

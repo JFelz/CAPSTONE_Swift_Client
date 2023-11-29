@@ -10,13 +10,13 @@ import { getSingleProducts } from '../../api/productData';
 import { deleteCartProduct } from '../../api/cartData';
 import { useAuth } from '../../utils/context/authContext';
 
-export default function CartProductCard({ productObj }) {
+export default function CartProductCard({ orderObj }) {
   const [materialObj, setMaterialObj] = useState([]);
   const { user } = useAuth();
 
   const deleteProd = () => {
-    if (window.confirm(`Delete ${productObj.title}?`)) {
-      deleteCartProduct(user.uid, productObj.id);
+    if (window.confirm(`Delete ${orderObj.title}?`)) {
+      deleteCartProduct(user.uid, orderObj.id);
     }
     window.location.reload();
   };
@@ -24,7 +24,7 @@ export default function CartProductCard({ productObj }) {
   console.log(user.uid, materialObj.id);
 
   const getMaterialObj = () => {
-    getSingleProducts(productObj.id).then(setMaterialObj);
+    getSingleProducts(orderObj.id).then(setMaterialObj);
   };
 
   useEffect(() => {
@@ -37,18 +37,18 @@ export default function CartProductCard({ productObj }) {
         <CardMedia
           component="img"
           style={{ height: '5em', width: '5em' }}
-          image={productObj.imageUrl1}
-          alt={productObj.title}
+          image={orderObj.imageUrl1}
+          alt={orderObj.title}
         />
         <CardContent sx={{
           flex: '1 0 auto', display: 'column',
         }}
         >
           <Typography component="div" style={{ fontSize: '1em' }}>
-            {productObj.title}
+            {orderObj.title}
           </Typography>
           <Typography variant="subtitle1" color="text.secondary" component="div">
-            {productObj.category}
+            {orderObj.category}
           </Typography>
         </CardContent>
         <section style={{
@@ -57,10 +57,10 @@ export default function CartProductCard({ productObj }) {
         >
           <Box style={{ padding: '1em' }}>
             <Typography>
-              <b>{productObj.price}</b>
+              <b>{orderObj.price}</b>
             </Typography>
           </Box>
-          <Link href={`/client/shop/${productObj.id}`} passHref>
+          <Link href={`/client/shop/${orderObj.id}`} passHref>
             <Button
               variant="outlined"
               style={{
@@ -86,7 +86,7 @@ export default function CartProductCard({ productObj }) {
 }
 
 CartProductCard.propTypes = {
-  productObj: PropTypes.shape({
+  orderObj: PropTypes.shape({
     id: PropTypes.number,
     title: PropTypes.string,
     description: PropTypes.string,

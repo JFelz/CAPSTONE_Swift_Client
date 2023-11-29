@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import {
   Button, Card, CardActions, CardContent, Typography,
 } from '@mui/material';
 import Link from 'next/link';
 import { Form } from 'react-bootstrap';
 import { useAuth } from '../../../utils/context/authContext';
-import { getCartUserUID } from '../../../api/cartData';
+import { deleteAllCart, getCartUserUID } from '../../../api/cartData';
 import CartProductCard from '../../../components/client/CartProductCard';
+import { createOrder, getSingleActiveOrder } from '../../../api/orderData';
 // import { createOrder } from '../../../api/orderData';
 
 const initialState = {
@@ -29,17 +31,15 @@ const initialState = {
 };
 
 export default function Cart() {
-  const [currentProduct, setCurrentProducts] = useState([]);
+  const [cartData, setCartData] = useState([]);
+  const [activeOrder, setActiveOrder] = useState();
   const [orderFormData, setOrderFormData] = useState(initialState);
   const [submitted, setSubmitted] = useState(false);
+  const router = useRouter();
   const { user } = useAuth();
 
   const getCartProducts = () => {
-    getCartUserUID(user.uid).then(setCurrentProducts);
-  };
-
-  const toggleBtnVisibility = () => {
-    setSubmitted(true);
+    getCartUserUID(user.uid).then(setCartData);
   };
 
   console.log(submitted);
@@ -53,40 +53,30 @@ export default function Cart() {
     console.log(orderFormData);
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const payload = {
-  //     ...orderFormData,
-  //     customerUid: user.uid,
-  //     status: true,
-  //   };
-  //   createOrder(payload).then(setSubmitted(true));
-  // };
-
-  const handleCheckout = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    const payload = {
+      ...orderFormData,
+      customerUid: user.uid,
+      status: true,
+    };
+    createOrder(payload).then(setSubmitted(true));
+  };
 
-    // ** This will be in the confirmation page **
+  const handleCheckout = () => {
+    //   Get newly created Order to tag products to
+    getSingleActiveOrder(user.uid).then(setActiveOrder);
 
-    // Retrieve order based off UID and active status - store in state
-
-    // Retrieve cart data and store it in state
-
-    // If statement to check if order exists in state
-
-    /* if true: loop through the cart state.
-    if (orderState) {
-      foreach(var x in cartState) {
-      addProductsToOrder(user.uid, x.Id)
-      }
-      router.push('client/order/confirmationPage');
+    if (activeOrder) {
+    //   cartData[0]?.map((obj) => addProductToOrder(user.uid, obj));
+    //   console.log('Product added to Order!');
+      deleteAllCart(user.uid).then(() => router.push('/client/order/confirmation'));
     }
-     */
   };
 
   useEffect(() => {
     getCartProducts();
-    handleCheckout();
+    // handleCheckout();
   }, []);
 
   return (
@@ -100,7 +90,7 @@ export default function Cart() {
       </section>
       <Card className="cartSplit" style={{ boxShadow: '0px 0px 0px 0px' }}>
         <CardContent className="LeftSideCartPage">
-          {currentProduct[0]?.map((prod) => <CartProductCard key={prod.id} productObj={prod} />)}
+          {cartData[0]?.map((prod) => <CartProductCard key={prod.id} orderObj={prod} />)}
         </CardContent>
         <CardContent className="RightSideCartPage">
           <Form>
@@ -219,7 +209,7 @@ export default function Cart() {
             </Typography>
           </CardContent>
           <CardActions>
-            {!submitted ? (<Button size="medium" id="PlaceOrder" variant="contained" className="PlaceOrderBtn" onClick={toggleBtnVisibility}>Place Order</Button>) : (
+            {!submitted ? (<Button size="medium" id="PlaceOrder" variant="contained" className="PlaceOrderBtn" onClick={handleSubmit}>Place Order</Button>) : (
               <Button
                 size="medium"
                 id="PlaceOrder"
@@ -228,6 +218,7 @@ export default function Cart() {
                 style={{
                   color: 'white', backgroundColor: '#4cd480', border: '0px', boxShadow: ' #bebebe 2px 2px 2px 0px',
                 }}
+                onClick={handleCheckout}
               >Proceed to Checkout
               </Button>
             )}
