@@ -8,7 +8,7 @@ import { FloatingLabel, Form } from 'react-bootstrap';
 import { useAuth } from '../../../utils/context/authContext';
 import { deleteAllCart, getCartUserUID } from '../../../api/cartData';
 import CartProductCard from '../../../components/client/CartProductCard';
-import { createOrder, getSingleActiveOrder } from '../../../api/orderData';
+import { addProductToOrder, createOrder, getSingleActiveOrder } from '../../../api/orderData';
 // import { createOrder } from '../../../api/orderData';
 
 const initialState = {
@@ -42,7 +42,7 @@ export default function Cart() {
     getCartUserUID(user.uid).then(setCartData);
   };
 
-  console.log(submitted);
+  console.log('CartData:', cartData);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -69,8 +69,8 @@ export default function Cart() {
 
     if (activeOrder) {
       // TODO: Add Products to the existing Order
-    //   cartData[0]?.map((obj) => addProductToOrder(user.uid, obj));
-    //   console.log('Product added to Order!');
+      cartData?.map((obj) => addProductToOrder(user.uid, obj));
+      //   console.log('Product added to Order!');
       deleteAllCart(user.uid).then(() => router.push('/client/order/confirmation'));
     }
   };
