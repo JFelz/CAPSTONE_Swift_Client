@@ -159,12 +159,12 @@ width: 100%;
 }
 
 .LeftProfile {
-  background-color: rgb(157, 0, 255);
-  width: 50%;
+  background-color: rgb(108, 108, 108);
+  width: 30%;
   height: 100vh;
 }
 
 .RightProfile {
-  background-color: rgb(255, 0, 115);
-  width: 50%;
+  background-color: rgb(46, 46, 46);
+  width: 70%;
 }
