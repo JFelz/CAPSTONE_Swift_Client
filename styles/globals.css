@@ -148,7 +148,6 @@ width: 100%;
   background-color: green;
   width: 100%;
   color: #bebebe
-  
 }
 
 /* Profile Section */
@@ -159,12 +158,11 @@ width: 100%;
 }
 
 .LeftProfile {
-  background-color: rgb(108, 108, 108);
   width: 30%;
   height: 100vh;
 }
 
 .RightProfile {
-  background-color: rgb(46, 46, 46);
+  padding: 10px;
   width: 70%;
 }

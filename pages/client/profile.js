@@ -68,7 +68,7 @@ export default function ProfilePage() {
           </Card>
         </section>
         <section className="RightProfile">
-          <h1> Customer Details </h1>
+          <h1> Order History </h1>
           { currentView === 'account' ? (
             <>
               <p>{currentUser?.name}</p>
