@@ -4,7 +4,7 @@ import {
   Button, Card, CardActions, CardContent, Typography,
 } from '@mui/material';
 import Link from 'next/link';
-import { Form } from 'react-bootstrap';
+import { FloatingLabel, Form } from 'react-bootstrap';
 import { useAuth } from '../../../utils/context/authContext';
 import { deleteAllCart, getCartUserUID } from '../../../api/cartData';
 import CartProductCard from '../../../components/client/CartProductCard';
@@ -68,6 +68,7 @@ export default function Cart() {
     getSingleActiveOrder(user.uid).then(setActiveOrder);
 
     if (activeOrder) {
+      // TODO: Add Products to the existing Order
     //   cartData[0]?.map((obj) => addProductToOrder(user.uid, obj));
     //   console.log('Product added to Order!');
       deleteAllCart(user.uid).then(() => router.push('/client/order/confirmation'));
@@ -76,7 +77,6 @@ export default function Cart() {
 
   useEffect(() => {
     getCartProducts();
-    // handleCheckout();
   }, []);
 
   return (
@@ -121,16 +121,6 @@ export default function Cart() {
                 onChange={handleChange}
               />
             </Form.Group>
-            <Form.Label>COUNTRY</Form.Label>
-            <Form.Group controlId="exampleForm.ControlInput1">
-              <Form.Control
-                type="textarea"
-                placeholder="Country"
-                name="country"
-                value={orderFormData.country}
-                onChange={handleChange}
-              />
-            </Form.Group>
             <Form.Label>STREET ADDRESS</Form.Label>
             <Form.Group controlId="exampleForm.ControlInput1">
               <Form.Control
@@ -151,16 +141,6 @@ export default function Cart() {
                 onChange={handleChange}
               />
             </Form.Group>
-            <Form.Label>STATE</Form.Label>
-            <Form.Group controlId="exampleForm.ControlInput1">
-              <Form.Control
-                type="textarea"
-                placeholder="State"
-                name="state"
-                value={orderFormData.state}
-                onChange={handleChange}
-              />
-            </Form.Group>
             <Form.Label>ZIPCODE</Form.Label>
             <Form.Group controlId="exampleForm.ControlInput1">
               <Form.Control
@@ -171,11 +151,84 @@ export default function Cart() {
                 onChange={handleChange}
               />
             </Form.Group>
+            <Form.Label>STATE</Form.Label>
+            <FloatingLabel controlId="floatingSelect" label="state">
+              <Form.Select
+                aria-label="Floating label select example"
+                name="state"
+                value={orderFormData.state}
+                onChange={handleChange}
+              >
+                <option>Choose a state</option>
+                <option value="AL">AL</option>
+                <option value="AK">AK</option>
+                <option value="AZ">AZ</option>
+                <option value="AR">AR</option>
+                <option value="CA">CA</option>
+                <option value="CO">CO</option>
+                <option value="CT">CT</option>
+                <option value="DE">DE</option>
+                <option value="FL">FL</option>
+                <option value="GA">GA</option>
+                <option value="HI">HI</option>
+                <option value="ID">ID</option>
+                <option value="IL">IL</option>
+                <option value="IN">IN</option>
+                <option value="IA">IA</option>
+                <option value="KS">KS</option>
+                <option value="KY">KY</option>
+                <option value="LA">LA</option>
+                <option value="ME">ME</option>
+                <option value="MD">MD</option>
+                <option value="MA">MA</option>
+                <option value="MI">MI</option>
+                <option value="MN">MN</option>
+                <option value="MS">MS</option>
+                <option value="MO">MO</option>
+                <option value="MT">MT</option>
+                <option value="NE">NE</option>
+                <option value="NV">NV</option>
+                <option value="NH">NH</option>
+                <option value="NJ">NJ</option>
+                <option value="NM">NM</option>
+                <option value="NY">NY</option>
+                <option value="NC">NC</option>
+                <option value="ND">ND</option>
+                <option value="OH">OH</option>
+                <option value="OK">OK</option>
+                <option value="OR">OR</option>
+                <option value="PA">PA</option>
+                <option value="RI">RI</option>
+                <option value="SC">SC</option>
+                <option value="SD">SD</option>
+                <option value="TN">TN</option>
+                <option value="TX">TX</option>
+                <option value="UT">UT</option>
+                <option value="VT">VT</option>
+                <option value="VA">VA</option>
+                <option value="WA">WA</option>
+                <option value="WV">WV</option>
+                <option value="WI">WI</option>
+                <option value="WY">WY</option>
+              </Form.Select>
+            </FloatingLabel>
+            <Form.Label> Country </Form.Label>
+            <FloatingLabel controlId="floatingSelect" label="country">
+              <Form.Select
+                aria-label="Floating label select example"
+                name="country"
+                value={orderFormData.country}
+                onChange={handleChange}
+              >
+                <option>Choose a country</option>
+                <option value="USA">USA</option>
+              </Form.Select>
+            </FloatingLabel>
             <br />
             <Form.Label> Payment Details</Form.Label>
             <Form.Select
               aria-label="Floating label select example"
-              name="paymentId"
+              name="paymentType"
               value={orderFormData.paymentType}
               onChange={handleChange}
             >

@@ -17,7 +17,7 @@ const createOrder = (payload) => new Promise((resolve, reject) => {
 });
 
 const getAllOrders = () => new Promise((resolve, reject) => {
-  fetch('https:localhost:7261/orders', {
+  fetch('https://localhost:7261/orders', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ const getAllOrders = () => new Promise((resolve, reject) => {
 });
 
 const getSingleOrder = (Id) => new Promise((resolve, reject) => {
-  fetch(`https:localhost:7261/orders/${Id}`, {
+  fetch(`https://localhost:7261/orders/${Id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -41,7 +41,19 @@ const getSingleOrder = (Id) => new Promise((resolve, reject) => {
 });
 
 const getSingleActiveOrder = (UID) => new Promise((resolve, reject) => {
-  fetch(`https:localhost:7261/orders/${UID}/status`, {
+  fetch(`https://localhost:7261/orders/${UID}/status`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
+const getUserAllOrder = (UID) => new Promise((resolve, reject) => {
+  fetch(`https://localhost:7261/orders/all/${UID}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -53,7 +65,7 @@ const getSingleActiveOrder = (UID) => new Promise((resolve, reject) => {
 });
 
 const getProductsFromOrder = (Id) => new Promise((resolve, reject) => {
-  fetch(`https:localhost:7261/orders/${Id}/products`, {
+  fetch(`https://localhost:7261/orders/${Id}/products`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -84,7 +96,7 @@ const addProductToOrder = (UID, payload) => new Promise((resolve, reject) => {
 });
 
 const deleteOrder = (Id) => new Promise((resolve, reject) => {
-  fetch(`https:localhost:7261/orders/remove/${Id}`, {
+  fetch(`https://localhost:7261/orders/remove/${Id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -96,7 +108,7 @@ const deleteOrder = (Id) => new Promise((resolve, reject) => {
 });
 
 const updateOrder = (id, payload) => new Promise((resolve, error) => {
-  fetch(`https:localhost:7261/orders/update/${id}`, {
+  fetch(`https://localhost:7261/orders/update/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -115,6 +127,7 @@ const updateOrder = (id, payload) => new Promise((resolve, error) => {
 
 export {
   createOrder,
+  getUserAllOrder,
   updateOrder,
   deleteOrder,
   getAllOrders,

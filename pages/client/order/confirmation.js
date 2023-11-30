@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getProductsFromOrder, getSingleActiveOrder } from '../../../api/orderData';
+import { getProductsFromOrder, getSingleActiveOrder, updateOrder } from '../../../api/orderData';
 import { useAuth } from '../../../utils/context/authContext';
 import ConfirmProductCard from '../../../components/client/ConfirmProductCards';
 
@@ -8,12 +8,24 @@ export default function OrderConfirmationPage() {
   const [fullProd, setFullProd] = useState();
   const { user } = useAuth();
 
-  const getOrderData = async () => {
+  const getOrderData = () => {
   //   Get newly created Order to tag products to
     getSingleActiveOrder(user.uid).then(setActiveOrder);
 
     getProductsFromOrder(activeOrder?.Id).then(setFullProd);
   };
+
+  console.log(activeOrder);
+
+  const handleUpdate = () => {
+    const payload = {
+      ...activeOrder,
+      status: false,
+    };
+    updateOrder(activeOrder?.id, payload);
+  };
+
+  handleUpdate();
 
   useEffect(() => {
     getOrderData();

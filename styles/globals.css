@@ -148,5 +148,21 @@ width: 100%;
   background-color: green;
   width: 100%;
   color: #bebebe
-  
+}
+
+/* Profile Section */
+
+.SplitProfile {
+  display: flex;
+  flex-direction: row;
+}
+
+.LeftProfile {
+  width: 30%;
+  height: 100vh;
+}
+
+.RightProfile {
+  padding: 10px;
+  width: 70%;
 }

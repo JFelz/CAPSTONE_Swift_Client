@@ -25,9 +25,9 @@ const initialState = {
   imageUrl3: '',
 };
 
-export default function ProductsPage({ editOrder }) {
+export default function ProductsPage({ editProduct }) {
   const [show, setShow] = useState(false);
-  const [orderFormData, setOrderFormData] = useState(initialState);
+  const [productFormData, setProductFormData] = useState(initialState);
   const [currentUser, setCurrentUser] = useState({});
   const router = useRouter();
   const { user } = useAuth();
@@ -47,11 +47,11 @@ export default function ProductsPage({ editOrder }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setOrderFormData((prevState) => ({
+    setProductFormData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
-    console.log(orderFormData);
+    console.log(productFormData);
   };
 
   const getUserId = () => {
@@ -59,20 +59,20 @@ export default function ProductsPage({ editOrder }) {
   };
 
   console.log('current user:', currentUser);
-  console.log('current product form data', orderFormData);
-  console.log('editOrder Obj:', editOrder);
+  console.log('current product form data', productFormData);
+  console.log('editOrder Obj:', editProduct);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (editOrder?.id) {
-      updateProducts(editOrder.id, orderFormData).then(() => router.push('/admin/product/main'));
+    if (editProduct?.id) {
+      updateProducts(editProduct?.id, productFormData).then(() => router.push('/admin/product/main'));
     } else {
-      setOrderFormData((prevState) => ({
+      setProductFormData((prevState) => ({
         ...prevState,
         adminId: currentUser.id,
       }));
       const payload = {
-        ...orderFormData,
+        ...productFormData,
         adminId: currentUser.id,
       };
       createNewProducts(payload);
@@ -85,11 +85,11 @@ export default function ProductsPage({ editOrder }) {
     getProducts();
     getUserId();
 
-    if (editOrder.id) {
-      setOrderFormData(editOrder);
-      console.log('checking to see if it saves', orderFormData);
+    if (editProduct?.id) {
+      setProductFormData(editProduct);
+      console.log('checking to see if it saves', productFormData);
     }
-  }, [editOrder.id]);
+  }, [editProduct?.id]);
   // Create button will route to a new page (or modal) to fill in information.
 
   // Get All products created by Admin
@@ -103,7 +103,7 @@ export default function ProductsPage({ editOrder }) {
   return (
     <>
       <div>
-        {editOrder.id ? <Button variant="warning" onClick={handleShow}> Edit Product in Store </Button> : <Button variant="primary" onClick={handleShow}> Add Product to Store </Button> }
+        {editProduct?.id ? <Button variant="warning" onClick={handleShow}> Edit Product in Store </Button> : <Button variant="primary" onClick={handleShow}> Add Product to Store </Button> }
       </div>
       <div>
         {products?.map((prod) => <ProductCard orderObj={prod} key={prod.id} />) }
@@ -121,7 +121,7 @@ export default function ProductsPage({ editOrder }) {
                 type="textarea"
                 placeholder="Enter Title"
                 name="title"
-                value={orderFormData.title}
+                value={productFormData.title}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -134,7 +134,7 @@ export default function ProductsPage({ editOrder }) {
                 rows={3}
                 placeholder="Add Product Description"
                 name="description"
-                value={orderFormData.description}
+                value={productFormData.description}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -142,7 +142,7 @@ export default function ProductsPage({ editOrder }) {
               <Form.Select
                 aria-label="Floating label select example"
                 name="category"
-                value={orderFormData.category}
+                value={productFormData.category}
                 onChange={handleChange}
               >
                 <option>Choose an option</option>
@@ -165,7 +165,7 @@ export default function ProductsPage({ editOrder }) {
                 type="number"
                 placeholder="Enter Length"
                 name="length"
-                value={orderFormData.length}
+                value={productFormData.length}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -175,7 +175,7 @@ export default function ProductsPage({ editOrder }) {
                 type="number"
                 placeholder="Enter Width"
                 name="width"
-                value={orderFormData.width}
+                value={productFormData.width}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -185,7 +185,7 @@ export default function ProductsPage({ editOrder }) {
                 type="number"
                 placeholder="Enter Wheelbase"
                 name="wheelbase"
-                value={orderFormData.wheelbase}
+                value={productFormData.wheelbase}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -195,7 +195,7 @@ export default function ProductsPage({ editOrder }) {
                 type="textarea"
                 placeholder="Enter Skate Spots"
                 name="skateSpots"
-                value={orderFormData.skateSpots}
+                value={productFormData.skateSpots}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -206,7 +206,7 @@ export default function ProductsPage({ editOrder }) {
                 type="number"
                 placeholder="Enter Price"
                 name="price"
-                value={orderFormData.price}
+                value={productFormData.price}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -217,7 +217,7 @@ export default function ProductsPage({ editOrder }) {
                 type="textarea"
                 placeholder="Enter 1st Image"
                 name="imageUrl1"
-                value={orderFormData.imageUrl1}
+                value={productFormData.imageUrl1}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -226,7 +226,7 @@ export default function ProductsPage({ editOrder }) {
                 type="textarea"
                 placeholder="Enter 2nd Image"
                 name="imageUrl2"
-                value={orderFormData.imageUrl2}
+                value={productFormData.imageUrl2}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -235,14 +235,14 @@ export default function ProductsPage({ editOrder }) {
                 type="textarea"
                 placeholder="Enter 3rd Image"
                 name="imageUrl3"
-                value={orderFormData.imageUrl3}
+                value={productFormData.imageUrl3}
                 onChange={handleChange}
               />
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Body>
-          {editOrder.id ? <Button variant="warning" onClick={handleSubmit}> Edit Product </Button> : <Button variant="primary" onClick={handleSubmit}> Create Product </Button> }
+          {editProduct?.id ? <Button variant="warning" onClick={handleSubmit}> Edit Product </Button> : <Button variant="primary" onClick={handleSubmit}> Create Product </Button> }
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={handleClose}>
@@ -255,7 +255,7 @@ export default function ProductsPage({ editOrder }) {
 }
 
 ProductsPage.propTypes = {
-  editOrder: PropTypes.shape({
+  editProduct: PropTypes.shape({
     id: PropTypes.number,
     title: PropTypes.string,
     description: PropTypes.string,
@@ -272,5 +272,5 @@ ProductsPage.propTypes = {
 };
 
 ProductsPage.defaultProps = {
-  editOrder: initialState,
+  editProduct: initialState,
 };
