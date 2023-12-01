@@ -76,13 +76,12 @@ const getProductsFromOrder = (Id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const addProductToOrder = (UID, payload) => new Promise((resolve, reject) => {
-  fetch(`https://localhost:7261/orders/${UID}/products/list/${payload}`, {
+const addProductToOrder = (UID) => new Promise((resolve, reject) => {
+  fetch(`https://localhost:7261/orders/${UID}/productslist`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(payload),
   })
     .then((response) => response.json())
     .then((data) => {
