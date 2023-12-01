@@ -8,7 +8,7 @@ import { FloatingLabel, Form } from 'react-bootstrap';
 import { useAuth } from '../../../utils/context/authContext';
 import { deleteAllCart, getCartUserUID } from '../../../api/cartData';
 import CartProductCard from '../../../components/client/CartProductCard';
-import { createOrder, getSingleActiveOrder } from '../../../api/orderData';
+import { addProductToOrder, createOrder, getSingleActiveOrder } from '../../../api/orderData';
 // import { createOrder } from '../../../api/orderData';
 
 const initialState = {
@@ -42,8 +42,6 @@ export default function Cart() {
     getCartUserUID(user.uid).then(setCartData);
   };
 
-  console.log(submitted);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setOrderFormData((prevState) => ({
@@ -63,15 +61,19 @@ export default function Cart() {
     createOrder(payload).then(setSubmitted(true));
   };
 
+  console.log(cartData);
+
   const handleCheckout = () => {
     //   Get newly created Order to tag products to
     getSingleActiveOrder(user.uid).then(setActiveOrder);
 
     if (activeOrder) {
-      // TODO: Add Products to the existing Order
-    //   cartData[0]?.map((obj) => addProductToOrder(user.uid, obj));
-    //   console.log('Product added to Order!');
-      deleteAllCart(user.uid).then(() => router.push('/client/order/confirmation'));
+      const asyncFunc = async () => {
+        addProductToOrder(user.uid);
+
+        await deleteAllCart(user.uid).then(() => router.push('/client/order/confirmation'));
+      };
+      asyncFunc();
     }
   };
 

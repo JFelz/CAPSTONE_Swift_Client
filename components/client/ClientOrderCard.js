@@ -62,7 +62,7 @@ ClientOrderCard.propTypes = {
     customerEmail: PropTypes.string,
     customerUid: PropTypes.string,
     shippingMethod: PropTypes.string,
-    dateTime: PropTypes.instanceOf(Date),
+    dateTime: PropTypes.string,
     paymentType: PropTypes.string,
     status: PropTypes.bool,
     revenue: PropTypes.number,
