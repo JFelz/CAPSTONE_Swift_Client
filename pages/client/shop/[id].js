@@ -42,22 +42,6 @@ export default function ClientProductViewPage() {
               alt="Product Image"
               fluid
             />
-
-            {/* Main image is a displayer. You have a row of buttons on the bottom. The orderObj is already pulling in the images and storing it in state. On onClick command, you display X image on the main image display component.
-
-            For an image display, you would store one image in state. The button updates that state with the new image you click.
-
-            Look at LandYachtz and see how they do their sizing for the right section of their page. #Devtools
-            */}
-
-            {/* <div className="BottomRowImages">
-              <Image
-                src={product?.imageUrl2}
-                alt="Product Image"
-                width={100}
-                height={110}
-              />
-            </div> */}
           </div>
           <Container className="RightSideProductPage">
             Right Side

@@ -64,8 +64,8 @@ const getUserAllOrder = (UID) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getProductsFromOrder = (Id) => new Promise((resolve, reject) => {
-  fetch(`https://localhost:7261/orders/${Id}/products`, {
+const getProductsFromOrder = (UID) => new Promise((resolve, reject) => {
+  fetch(`https://localhost:7261/orders/${UID}/products`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

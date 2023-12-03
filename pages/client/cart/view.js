@@ -40,21 +40,26 @@ export default function Cart() {
 
   const getCartProducts = () => {
     getCartUserUID(user.uid).then(setCartData);
+    console.log(cartData);
   };
 
-  // let totalRevenue = 0;
-  // const calculateRevenue = () => {
-  //   cartData?.map((obj) => obj.map((x) => totalRevenue += x.price));
-  //   console.log('total revenue:', totalRevenue);
+  let totalRevenue = 0;
+  const calculateRevenue = () => {
+    cartData?.map((obj) => obj.map((x) => {
+      totalRevenue += x.price;
+      return totalRevenue;
+    }));
 
-  //   if (orderFormData.shippingMethod === 'express') {
-  //     totalRevenue += 35;
-  //   } else if (orderFormData.shippingMethod === 'overnight') {
-  //     totalRevenue += 65;
-  //   }
-  // };
+    if (orderFormData.shippingMethod === 'express') {
+      totalRevenue += 35;
+    } else if (orderFormData.shippingMethod === 'overnight') {
+      totalRevenue += 65;
+    }
+  };
 
-  // calculateRevenue();
+  calculateRevenue();
+
+  console.log('totalRevenue', totalRevenue);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -70,7 +75,7 @@ export default function Cart() {
     const payload = {
       ...orderFormData,
       customerUid: user.uid,
-      // revenue: totalRevenue,
+      revenue: totalRevenue,
       status: true,
     };
     createOrder(payload).then(setSubmitted(true));
@@ -105,9 +110,12 @@ export default function Cart() {
           </Link>
         </div>
       </section>
-      <Card className="cartSplit" style={{ boxShadow: '0px 0px 0px 0px' }}>
+      <Card className="cartSplit" style={{ boxShadow: '0px 0px 0px 0px', height: '100%', backgroundColor: '#F2F2F2' }}>
         <CardContent className="LeftSideCartPage">
-          {cartData[0]?.map((prod) => <CartProductCard key={prod.id} orderObj={prod} />)}
+          <div>
+            <h1> My Cart </h1>
+          </div>
+          {cartData[0]?.map((prod) => <CartProductCard key={prod.id} orderObj={prod} onUpdate={getCartProducts} />)}
         </CardContent>
         <CardContent className="RightSideCartPage">
           <Form>
@@ -275,7 +283,7 @@ export default function Cart() {
           </Form>
           <CardContent>
             <Typography style={{ fontWeight: 'bold', fontSize: '1.1em' }}>
-              {/* Total: ${totalRevenue} */}
+              Total: ${totalRevenue}
             </Typography>
           </CardContent>
           <CardActions>

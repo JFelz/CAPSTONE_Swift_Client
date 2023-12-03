@@ -4,12 +4,11 @@ import Link from 'next/link';
 import { Button, Card } from 'react-bootstrap';
 import { deleteProduct } from '../../api/productData';
 
-export default function ProductCard({ orderObj }) {
+export default function ProductCard({ orderObj, onUpdate }) {
   const deleteCurrentProduct = () => {
     if (window.confirm(`Delete ${orderObj.title}?`)) {
-      deleteProduct(orderObj.id);
+      deleteProduct(orderObj.id).then(() => onUpdate());
     }
-    window.location.reload();
   };
 
   return (
@@ -101,4 +100,5 @@ ProductCard.propTypes = {
     uid: PropTypes.string,
     imageUrl1: PropTypes.string,
   }).isRequired,
+  onUpdate: PropTypes.func.isRequired,
 };
