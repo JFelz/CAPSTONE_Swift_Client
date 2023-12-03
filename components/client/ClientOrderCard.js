@@ -1,21 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-// import Link from 'next/link';
+import Link from 'next/link';
 import {
-  Box, Card, Typography, CardContent,
+  Box, Card, Typography, CardContent, CardActionArea, Button,
 } from '@mui/material';
+import { getProductsFromOrder } from '../../api/orderData';
 
 export default function ClientOrderCard({ orderObj }) {
-  // const deleteCurrentProduct = () => {
-  //   if (window.confirm(`Delete Order #${orderObj.id}?`)) {
-  //     deleteOrder(orderObj.id);
-  //   }
-  //   window.location.reload();
-  // };
+  const [productList, setProductList] = useState();
+
+  const getProductList = () => {
+    getProductsFromOrder(orderObj.id).then(setProductList);
+  };
+
+  console.log('product list:', productList);
+
+  useEffect(() => {
+    getProductList();
+  }, []);
 
   return (
     <>
-      <Card sx={{ display: 'flex', height: 'auto', marginBottom: '10px' }}>
+      <Card sx={{
+        display: 'flex', height: 'auto', marginBottom: '10px', width: '100%',
+      }}
+      >
         <CardContent>
           <Typography component="div" variant="p">
             Order#: {orderObj?.id}
@@ -50,6 +59,11 @@ export default function ClientOrderCard({ orderObj }) {
             Created on: {orderObj?.dateTime}
           </Typography>
         </Box>
+        <CardActionArea>
+          <Link passHref href={`/client/order/${orderObj.id}`}>
+            <Button size="small" variant="text">View Reciept</Button>
+          </Link>
+        </CardActionArea>
       </Card>
     </>
   );

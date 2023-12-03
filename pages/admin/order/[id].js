@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { getSingleOrder } from '../../../api/orderData';
+import { getProductsFromOrder, getSingleOrder } from '../../../api/orderData';
+import ClientProdListCard from '../../../components/client/ClientProdListCard';
 
 export default function OrderViewPage() {
   const [order, setOrder] = useState();
+  const [productList, setProductList] = useState();
   const router = useRouter();
   const { id } = router.query;
 
-  const currentOrder = () => {
+  const currentOrder = async () => {
     getSingleOrder(id).then(setOrder);
+    await getProductsFromOrder(order?.id).then(setProductList);
   };
-
   useEffect(() => {
     currentOrder();
-  }, []);
+  }, [order]);
 
   return (
     <>
@@ -22,6 +24,9 @@ export default function OrderViewPage() {
         <p>{order?.customerName}</p>
         <p>{order?.customerEmail}</p>
         <p>Created on: {order?.dateTime}</p>
+      </div>
+      <div>
+        {productList?.map((obj) => <ClientProdListCard key={obj.id} orderObj={obj} />)}
       </div>
     </>
   );

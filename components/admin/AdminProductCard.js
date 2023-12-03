@@ -9,6 +9,7 @@ export default function ProductCard({ orderObj }) {
     if (window.confirm(`Delete ${orderObj.title}?`)) {
       deleteProduct(orderObj.id);
     }
+    window.location.reload();
   };
 
   return (

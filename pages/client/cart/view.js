@@ -42,6 +42,20 @@ export default function Cart() {
     getCartUserUID(user.uid).then(setCartData);
   };
 
+  // let totalRevenue = 0;
+  // const calculateRevenue = () => {
+  //   cartData?.map((obj) => obj.map((x) => totalRevenue += x.price));
+  //   console.log('total revenue:', totalRevenue);
+
+  //   if (orderFormData.shippingMethod === 'express') {
+  //     totalRevenue += 35;
+  //   } else if (orderFormData.shippingMethod === 'overnight') {
+  //     totalRevenue += 65;
+  //   }
+  // };
+
+  // calculateRevenue();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setOrderFormData((prevState) => ({
@@ -56,6 +70,7 @@ export default function Cart() {
     const payload = {
       ...orderFormData,
       customerUid: user.uid,
+      // revenue: totalRevenue,
       status: true,
     };
     createOrder(payload).then(setSubmitted(true));
@@ -259,8 +274,8 @@ export default function Cart() {
             <li>Overnight +$65 (Overnight Shipping)</li>
           </Form>
           <CardContent>
-            <Typography>
-              Total
+            <Typography style={{ fontWeight: 'bold', fontSize: '1.1em' }}>
+              {/* Total: ${totalRevenue} */}
             </Typography>
           </CardContent>
           <CardActions>
