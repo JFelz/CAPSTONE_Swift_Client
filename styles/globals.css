@@ -19,10 +19,9 @@ body {
 
 .SplitProfile {
   width: 100%;
-  justify-content: center;
 }
 .SplitProfile .LeftProfile {
-  width: 50%;
+  width: 30%;
   height: 100vh;
 }
 .SplitProfile .RightProfile {

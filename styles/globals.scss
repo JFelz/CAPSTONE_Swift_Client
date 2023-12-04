@@ -21,10 +21,9 @@ background-color: variables.$bg-color;
 .SplitProfile {
   @extend %display-flex;
   width: 100%;
-  justify-content: center;
 
   .LeftProfile {
-    width: 50%;
+    width: 30%;
     height: 100vh;
   }
 
