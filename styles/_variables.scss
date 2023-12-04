@@ -1,3 +1,15 @@
 
 $logo-color: #EC8D00;
-$bg-color: #c22222;
+$bg-color: #EAEAEB;
+$font-color: black;
+
+%display-flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+%display-column {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}

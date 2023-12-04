@@ -35,7 +35,9 @@ export default function ProfilePage() {
 
   return (
     <>
-      <h1> Profile </h1>
+      <div className="ProfileTitle">
+        <p> My Account </p>
+      </div>
       <section className="SplitProfile">
         <section className="LeftProfile">
           <Card sx={{
@@ -68,7 +70,6 @@ export default function ProfilePage() {
           </Card>
         </section>
         <section className="RightProfile">
-          <h1> Order History </h1>
           { currentView === 'account' ? (
             <>
               <p>{currentUser?.name}</p>
