@@ -45,7 +45,7 @@ const createNewProducts = (payload) => new Promise((resolve, reject) => {
     .then(async (response) => {
       let data;
       if (response.ok) {
-        data = await response.json();
+        data = await response.text();
         resolve(data);
       }
     })
