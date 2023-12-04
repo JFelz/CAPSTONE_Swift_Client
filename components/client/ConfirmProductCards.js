@@ -5,9 +5,6 @@ import {
 } from '@mui/material';
 
 export default function ConfirmProductCard({ orderObj }) {
-  // useEffect(() => {
-  // }, []);
-
   return (
     <>
       <Card sx={{ display: 'flex', width: '100%', margin: '.2em' }}>

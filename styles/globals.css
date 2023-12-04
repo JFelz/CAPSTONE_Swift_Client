@@ -29,11 +29,18 @@ body {
 }
 
 .viewProduct-mid-section{
-  background-color: rgb(16, 16, 16);
+
 }
+
+.productCardTitle {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 2px;
+}
+
 .viewProduct-bot-section {
   color: black;
-  background-color: rgb(222, 9, 55)
 }
 
 .productSplit {
@@ -47,14 +54,12 @@ body {
 .LeftSideProductPage {
   display: flex;
   flex-direction: column;
-  background-color: rgb(0, 255, 157);
   width: 50%;
 }
 
 .RightSideProductPage {
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
   font-size: 1em;
   width: 50%;
   padding: 2em;
@@ -65,9 +70,9 @@ body {
   height: auto;
 }
 
-.container-fluid {
+/* .container-fluid {
 width: 100%;
-}
+} */
 
 .ViewPageCartSection {
   display: flex;
@@ -109,15 +114,13 @@ width: 100%;
 .cartSplit {
   display: flex;
   flex-direction: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
 }
 
 .LeftSideCartPage {
   display: flex;
   flex-direction: column;
-  /* background-color: rgb(0, 255, 157); */
+  justify-content: flex-start;
+  background-color: #F2F2F2;
   width: 50%;
   height: 100%;
   

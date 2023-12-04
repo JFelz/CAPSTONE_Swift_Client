@@ -10,22 +10,23 @@ import { getSingleProducts } from '../../api/productData';
 import { deleteCartProduct } from '../../api/cartData';
 import { useAuth } from '../../utils/context/authContext';
 
-export default function CartProductCard({ orderObj }) {
+export default function CartProductCard({ orderObj, onUpdate }) {
   const [materialObj, setMaterialObj] = useState([]);
   const { user } = useAuth();
 
+  const getMaterialObj = () => {
+    getSingleProducts(orderObj?.id).then(setMaterialObj);
+  };
+
+  console.log('before delete', materialObj);
+
   const deleteProd = () => {
     if (window.confirm(`Delete ${orderObj.title}?`)) {
-      deleteCartProduct(user.uid, orderObj.id);
+      deleteCartProduct(user.uid, orderObj.id).then(() => onUpdate());
     }
-    window.location.reload();
   };
 
-  console.log(user.uid, materialObj.id);
-
-  const getMaterialObj = () => {
-    getSingleProducts(orderObj.id).then(setMaterialObj);
-  };
+  console.log('after delete', materialObj);
 
   useEffect(() => {
     getMaterialObj();
@@ -33,7 +34,10 @@ export default function CartProductCard({ orderObj }) {
 
   return (
     <>
-      <Card sx={{ display: 'flex', width: '100%', margin: '.2em' }}>
+      <Card sx={{
+        display: 'flex', flexDirection: 'row', flexWrap: 'nowrap', width: '40vw', margin: '.2em',
+      }}
+      >
         <CardMedia
           component="img"
           style={{ height: '5em', width: '5em' }}
@@ -44,10 +48,10 @@ export default function CartProductCard({ orderObj }) {
           flex: '1 0 auto', display: 'column',
         }}
         >
-          <Typography component="div" style={{ fontSize: '1em' }}>
+          <Typography classsName="productCardTitle" style={{ width: '15vw', fontSize: '1vw' }}>
             {orderObj.title}
           </Typography>
-          <Typography variant="subtitle1" color="text.secondary" component="div">
+          <Typography variant="subtitle1" color="text.secondary" component="div" style={{ width: '15vw', fontSize: '1vw' }}>
             {orderObj.category}
           </Typography>
         </CardContent>
@@ -55,8 +59,8 @@ export default function CartProductCard({ orderObj }) {
           display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', width: '10em',
         }}
         >
-          <Box style={{ padding: '1em' }}>
-            <Typography>
+          <Box style={{ width: '10vw', padding: '1em' }}>
+            <Typography style={{ width: '15vw', fontSize: '1vw' }}>
               <b>{orderObj.price}</b>
             </Typography>
           </Box>
@@ -64,7 +68,11 @@ export default function CartProductCard({ orderObj }) {
             <Button
               variant="outlined"
               style={{
-                height: '3em', display: 'flex', flexDirection: 'row', alignItems: 'center',
+                height: '5vh',
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                width: '5vw',
               }}
             >
               <VisibilityIcon />
@@ -95,4 +103,5 @@ CartProductCard.propTypes = {
     uid: PropTypes.string,
     imageUrl1: PropTypes.string,
   }).isRequired,
+  onUpdate: PropTypes.func.isRequired,
 };

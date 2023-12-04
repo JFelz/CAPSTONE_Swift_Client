@@ -4,12 +4,11 @@ import Link from 'next/link';
 import { Button, Card } from 'react-bootstrap';
 import { deleteOrder } from '../../api/orderData';
 
-export default function AdminOrderCard({ orderObj }) {
+export default function AdminOrderCard({ orderObj, onUpdate }) {
   const deleteCurrentProduct = () => {
     if (window.confirm(`Delete Order #${orderObj.id}?`)) {
-      deleteOrder(orderObj.id);
+      deleteOrder(orderObj.id).then(() => onUpdate());
     }
-    window.location.reload();
   };
 
   return (
@@ -89,4 +88,5 @@ AdminOrderCard.propTypes = {
     customerEmail: PropTypes.string,
     customerUid: PropTypes.string,
   }).isRequired,
+  onUpdate: PropTypes.func.isRequired,
 };

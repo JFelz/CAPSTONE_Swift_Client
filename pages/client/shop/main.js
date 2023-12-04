@@ -18,7 +18,6 @@ export default function Shop() {
       <section>
         <div> Filter </div>
       </section>
-      {/* end section */}
       <section className="RenderCards">
         {currentProducts?.map((prod) => <ClientProductCard key={prod.id} prodObj={prod} />)}
       </section>

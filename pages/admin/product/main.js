@@ -8,7 +8,6 @@ import { createNewProducts, getAllProducts, updateProducts } from '../../../api/
 import ProductCard from '../../../components/admin/AdminProductCard';
 import { getUsersUID } from '../../../api/userData';
 import { useAuth } from '../../../utils/context/authContext';
-// import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
   adminId: null,
@@ -90,15 +89,6 @@ export default function ProductsPage({ editProduct }) {
       console.log('checking to see if it saves', productFormData);
     }
   }, [editProduct?.id]);
-  // Create button will route to a new page (or modal) to fill in information.
-
-  // Get All products created by Admin
-
-  // Display through cards with edit and delete buttons
-
-  // Edit will route to a new page
-
-  // Delete function is created in the child component below
 
   return (
     <>
@@ -106,7 +96,7 @@ export default function ProductsPage({ editProduct }) {
         {editProduct?.id ? <Button variant="warning" onClick={handleShow}> Edit Product in Store </Button> : <Button variant="primary" onClick={handleShow}> Add Product to Store </Button> }
       </div>
       <div>
-        {products?.map((prod) => <ProductCard orderObj={prod} key={prod.id} />) }
+        {products?.map((prod) => <ProductCard orderObj={prod} key={prod.id} onUpdate={getProducts} />) }
       </div>
       <Modal show={show} onHide={handleClose} style={{ color: 'black' }}>
         <Modal.Header closeButton>

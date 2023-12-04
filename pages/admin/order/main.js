@@ -83,15 +83,6 @@ export default function OrdersPage({ editOrder }) {
       console.log('checking to see if it saves', orderFormData);
     }
   }, [editOrder.id]);
-  // Create button will route to a new page (or modal) to fill in information.
-
-  // Get All products created by Admin
-
-  // Display through cards with edit and delete buttons
-
-  // Edit will route to a new page
-
-  // Delete function is created in the child component below
 
   return (
     <>
@@ -99,7 +90,7 @@ export default function OrdersPage({ editOrder }) {
         {editOrder.id ? <Button variant="warning" onClick={handleShow}> Edit Customer Order </Button> : '' }
       </div>
       <div>
-        {orders?.map((obj) => <AdminOrderCard orderObj={obj} key={obj.id} />) }
+        {orders?.map((obj) => <AdminOrderCard orderObj={obj} key={obj.id} onUpdate={getOrders} />) }
       </div>
       <Modal show={show} onHide={handleClose} style={{ color: 'black' }}>
         <Modal.Header closeButton>

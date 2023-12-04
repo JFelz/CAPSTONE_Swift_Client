@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import {
-  CardMedia, Typography, CardContent, Rating, CardActionArea,
+  Typography, CardContent, Rating, CardActionArea, CardMedia,
 } from '@mui/material';
-
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 
@@ -17,7 +16,7 @@ export default function ClientProductCard({ prodObj }) {
         >
           <CardMedia
             sx={{ height: 300 }}
-            image={prodObj.imageUrl1}
+            image={prodObj?.imageUrl1}
             title="green iguana"
           />
           <CardContent>
