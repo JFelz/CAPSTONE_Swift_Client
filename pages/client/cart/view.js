@@ -3,17 +3,14 @@ import { useRouter } from 'next/router';
 import {
   Button, Card, CardActions, CardContent, Typography,
 } from '@mui/material';
-import Link from 'next/link';
 import { FloatingLabel, Form } from 'react-bootstrap';
 import { useAuth } from '../../../utils/context/authContext';
 import { deleteAllCart, getCartUserUID } from '../../../api/cartData';
 import CartProductCard from '../../../components/client/CartProductCard';
 import { addProductToOrder, createOrder, getSingleActiveOrder } from '../../../api/orderData';
-// import { createOrder } from '../../../api/orderData';
 
 const initialState = {
   customerUid: '',
-  paymentId: 0,
   orderStatusId: 0,
   customerName: '',
   customerEmail: '',
@@ -67,21 +64,22 @@ export default function Cart() {
       ...prevState,
       [name]: value,
     }));
-    console.log(orderFormData);
   };
+
+  console.log('cartData:', cartData);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const payload = {
       ...orderFormData,
-      customerUid: user.uid,
+      customerUid: user?.uid,
       revenue: totalRevenue,
       status: true,
     };
     createOrder(payload).then(setSubmitted(true));
   };
 
-  console.log(cartData);
+  console.log(orderFormData);
 
   const handleCheckout = () => {
     //   Get newly created Order to tag products to
@@ -110,7 +108,6 @@ export default function Cart() {
       </section>
       <Card className="cartSplit" style={{ boxShadow: '0px 0px 0px 0px', height: '100%', backgroundColor: '#F2F2F2' }}>
         <CardContent className="LeftSideCartPage">
-          <Button variant="contained"> Hi </Button>
           {cartData[0]?.map((prod) => <CartProductCard key={prod.id} orderObj={prod} onUpdate={getCartProducts} />)}
         </CardContent>
         <CardContent className="RightSideCartPage">
