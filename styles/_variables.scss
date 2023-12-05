@@ -1,13 +1,24 @@
 
 $logo-color: #EC8D00;
-$bg-color: #EAEAEB;
+$logo-hover-color: #ca7900;
+$bg-color: #F2F2F2;
 $font-color: black;
+
+// Button
+
+$primary-btn-color: rgb(0, 0, 0);
+$primary-hover-btn-color: rgb(51, 51, 51);
+$border-radius-btn: 4px;
+$success-btn-color: #4CD480;
+$success-hover-btn-color: #7ae7a4;
+$signout-btn-color: #C92D39;
 
 %display-flex {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
+
 %display-column {
   display: flex;
   flex-direction: column;

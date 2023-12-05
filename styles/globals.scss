@@ -10,7 +10,7 @@ background-color: variables.$bg-color;
   justify-content: center;
   align-items: center;
   color: variables.$font-color;
-  font-size: 4em;
+  font-size: 3em;
   padding: 1em;
 }
 
@@ -28,7 +28,62 @@ background-color: variables.$bg-color;
   }
 
   .RightProfile {
-    width: 50%;
+    width: 60%;
     padding: 5px;
   }
+}
+
+.cartSplit {
+  @extend %display-flex;
+  width: 100%;
+  height: 100vh;
+
+  .LeftSideCartPage {
+    width: 50%;
+    height: 100vh;
+  }
+
+  .RightSideCartPage {
+    width: 50%;
+    height: 100vh;
+  }
+  
+  .PlaceOrderBtn {
+    background-color: variables.$primary-btn-color;
+    border-radius: variables.$border-radius-btn;
+    width: 100%;
+  }
+  .PlaceOrderBtn:hover {
+    background-color: variables.$primary-hover-btn-color;
+  }
+
+  .CheckoutBtn {
+    background-color: variables.$logo-color;
+    border-radius: variables.$border-radius-btn;
+    width: 100%;
+  }
+
+  .CheckoutBtn:hover {
+    background-color: variables.$logo-hover-color;
+  }
+
+  .GoBack {
+    background-color: variables.$logo-color;
+  }
+}
+
+#SignOut {
+  background-color: variables.$signout-btn-color;
+}
+
+#ReturnBtn {
+  background-color: variables.$primary-btn-color;
+}
+
+.viewProducttopsection {
+  @extend %display-flex;
+  justify-content: center;
+  font-size: 3em;
+  font-style: normal;
+  margin: 5%;
 }

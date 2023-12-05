@@ -35,7 +35,7 @@ export default function CartProductCard({ orderObj, onUpdate }) {
   return (
     <>
       <Card sx={{
-        display: 'flex', flexDirection: 'row', flexWrap: 'nowrap', width: '40vw', margin: '.2em',
+        display: 'flex', flexDirection: 'row', flexWrap: 'nowrap', maxWidth: '40vw', maxHeight: '100px', margin: '.2em',
       }}
       >
         <CardMedia

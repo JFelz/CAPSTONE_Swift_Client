@@ -18,7 +18,7 @@ function Home() {
       <h1>Hello {user.fbUser.displayName}! </h1>
       <p>Your Bio: {user.bio}</p>
       <p>Click the button below to logout!</p>
-      <Button variant="contained" type="button" size="lg" onClick={signOut}>
+      <Button variant="contained" type="button" size="lg" id="SignOut" onClick={signOut}>
         Sign Out
       </Button>
     </div>
