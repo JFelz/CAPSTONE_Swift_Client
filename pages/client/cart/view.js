@@ -103,18 +103,14 @@ export default function Cart() {
 
   return (
     <>
-      <section className="viewProduct-top-section">
+      <section className="viewProducttopsection">
         <div>
-          <Link href="/client/shop/main" passHref>
-            <Button variant="contained"> Go Back </Button>
-          </Link>
+          <p>My Cart</p>
         </div>
       </section>
       <Card className="cartSplit" style={{ boxShadow: '0px 0px 0px 0px', height: '100%', backgroundColor: '#F2F2F2' }}>
         <CardContent className="LeftSideCartPage">
-          <div>
-            <h1> My Cart </h1>
-          </div>
+          <Button variant="contained"> Hi </Button>
           {cartData[0]?.map((prod) => <CartProductCard key={prod.id} orderObj={prod} onUpdate={getCartProducts} />)}
         </CardContent>
         <CardContent className="RightSideCartPage">
@@ -287,15 +283,11 @@ export default function Cart() {
             </Typography>
           </CardContent>
           <CardActions>
-            {!submitted ? (<Button size="medium" id="PlaceOrder" variant="contained" className="PlaceOrderBtn" onClick={handleSubmit}>Place Order</Button>) : (
+            {!submitted ? (<Button size="medium" variant="contained" className="PlaceOrderBtn" onClick={handleSubmit}>Place Order</Button>) : (
               <Button
                 size="medium"
-                id="PlaceOrder"
-                variant="outlined"
+                variant="contained"
                 className="CheckoutBtn"
-                style={{
-                  color: 'white', backgroundColor: '#4cd480', border: '0px', boxShadow: ' #bebebe 2px 2px 2px 0px',
-                }}
                 onClick={handleCheckout}
               >Proceed to Checkout
               </Button>
