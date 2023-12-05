@@ -45,7 +45,6 @@ background-color: variables.$bg-color;
 
   .RightSideCartPage {
     width: 50%;
-    height: 100vh;
   }
   
   .PlaceOrderBtn {
@@ -66,18 +65,10 @@ background-color: variables.$bg-color;
   .CheckoutBtn:hover {
     background-color: variables.$logo-hover-color;
   }
-
-  .GoBack {
-    background-color: variables.$logo-color;
-  }
 }
 
 #SignOut {
   background-color: variables.$signout-btn-color;
-}
-
-#ReturnBtn {
-  background-color: variables.$primary-btn-color;
 }
 
 .viewProducttopsection {
