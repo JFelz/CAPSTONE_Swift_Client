@@ -4,9 +4,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Link from 'next/link';
 import {
-  Navbar, Container, Nav, Button, Image,
+  Navbar, Container, Nav, Image,
 } from 'react-bootstrap';
-import { signOut } from '../../utils/auth';
 
 export default function NavBarAuth() {
   return (
@@ -42,12 +41,15 @@ export default function NavBarAuth() {
             <Link passHref href="/client/order/confirmation">
               <Nav.Link style={{ width: '100px', color: 'black' }}> About Us </Nav.Link>
             </Link>
+            <Link passHref href="/client/register/main">
+              <Nav.Link style={{ width: '100px', color: 'black' }}> Register </Nav.Link>
+            </Link>
             <Container style={{
               display: 'flex',
               flexDirection: 'row',
               flexWrap: 'wrap',
               justifyContent: 'flex-end',
-              width: '40vw',
+              width: '50vw',
             }}
             >
               <Link passHref href="/client/cart/view">
@@ -79,15 +81,6 @@ export default function NavBarAuth() {
                   <AccountCircleIcon sx={{ fontSize: 25 }} />
                 </Nav.Link>
               </Link>
-            </Container>
-            <Container style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'center',
-              width: 'auto',
-            }}
-            >
-              <Button variant="danger" onClick={signOut}>Sign Out</Button>
             </Container>
           </Nav>
         </Navbar.Collapse>

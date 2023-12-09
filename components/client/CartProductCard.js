@@ -48,7 +48,7 @@ export default function CartProductCard({ orderObj, onUpdate }) {
           flex: '1 0 auto', display: 'column',
         }}
         >
-          <Typography classsName="productCardTitle" style={{ width: '15vw', fontSize: '1vw' }}>
+          <Typography className="productCardTitle" style={{ width: '15vw', fontSize: '1vw' }}>
             {orderObj.title}
           </Typography>
           <Typography variant="subtitle1" color="text.secondary" component="div" style={{ width: '15vw', fontSize: '1vw' }}>

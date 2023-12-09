@@ -4,15 +4,16 @@ import {
   Button, Card, CardActions, CardContent, Typography,
 } from '@mui/material';
 import { FloatingLabel, Form } from 'react-bootstrap';
+import Link from 'next/link';
 import { useAuth } from '../../../utils/context/authContext';
 import { deleteAllCart, getCartUserUID } from '../../../api/cartData';
 import CartProductCard from '../../../components/client/CartProductCard';
-import { addProductToOrder, createOrder, getSingleActiveOrder } from '../../../api/orderData';
-// import { createOrder } from '../../../api/orderData';
+import {
+  addProductToOrder, createOrder,
+} from '../../../api/orderData';
 
 const initialState = {
   customerUid: '',
-  paymentId: 0,
   orderStatusId: 0,
   customerName: '',
   customerEmail: '',
@@ -31,7 +32,6 @@ const initialState = {
 
 export default function Cart() {
   const [cartData, setCartData] = useState([]);
-  const [activeOrder, setActiveOrder] = useState();
   const [orderFormData, setOrderFormData] = useState(initialState);
   const [submitted, setSubmitted] = useState(false);
   const router = useRouter();
@@ -66,34 +66,28 @@ export default function Cart() {
       ...prevState,
       [name]: value,
     }));
-    console.log(orderFormData);
   };
+
+  console.log('cartData:', cartData);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const payload = {
       ...orderFormData,
-      customerUid: user.uid,
+      customerUid: user?.uid,
       revenue: totalRevenue,
       status: true,
     };
     createOrder(payload).then(setSubmitted(true));
   };
 
-  console.log(cartData);
+  console.log(orderFormData);
 
-  const handleCheckout = () => {
-    //   Get newly created Order to tag products to
-    getSingleActiveOrder(user.uid).then(setActiveOrder);
+  const handleCheckout = async () => {
+    addProductToOrder(user.uid);
+    await deleteAllCart(user.uid);
 
-    if (activeOrder) {
-      const asyncFunc = async () => {
-        addProductToOrder(user.uid);
-
-        await deleteAllCart(user.uid).then(() => router.push('/client/order/confirmation'));
-      };
-      asyncFunc();
-    }
+    await router.push('/client/order/confirmation');
   };
 
   useEffect(() => {
@@ -102,14 +96,16 @@ export default function Cart() {
 
   return (
     <>
-      <section className="viewProducttopsection">
+      <section className="viewProduct-top-section">
         <div>
           <p>My Cart</p>
         </div>
       </section>
+      <Link href="/client/shop/main" passHref>
+        <Button variant="contained" style={{ backgroundColor: 'black', margin: '1em', borderRadius: '4px' }}> Return to Shop </Button>
+      </Link>
       <Card className="cartSplit" style={{ boxShadow: '0px 0px 0px 0px', height: '100%', backgroundColor: '#F2F2F2' }}>
         <CardContent className="LeftSideCartPage">
-          <Button variant="contained" className=""> Hi </Button>
           {cartData[0]?.map((prod) => <CartProductCard key={prod.id} orderObj={prod} onUpdate={getCartProducts} />)}
         </CardContent>
         <CardContent className="RightSideCartPage">
