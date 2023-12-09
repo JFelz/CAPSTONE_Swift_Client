@@ -1,7 +1,13 @@
-.ProfileTitle, .RenderCards, .SplitProfile, .cartSplit, .viewProducttopsection {
+.ProfileTitle, .RenderCards, .SplitProfile, .cartSplit, .viewProduct-top-section, .viewProduct-mid-section, .viewProduct-mid-section .productSplit, .viewProduct-mid-section .productSplit .LeftSideProductPage, .viewProduct-mid-section .productSplit .RightSideProductPage, .ConfirmationCard .ConfirmationSplit, .ConfirmationCard .ConfirmBtnSplit {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+.ConfirmationCard, .ConfirmationCard .ConfirmationHeader, .ConfirmationCard .ConfirmationMid, .ConfirmationCard .ConfirmationSplit .ConfirmationLeft, .ConfirmationCard .ConfirmationSplit .ConfirmationRight {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
 }
 
 body {
@@ -61,9 +67,53 @@ body {
   background-color: #C92D39;
 }
 
-.viewProducttopsection {
+.viewProduct-top-section {
   justify-content: center;
   font-size: 3em;
   font-style: normal;
-  margin: 5%;
+  margin: 4%;
+}
+
+.viewProduct-mid-section .productSplit .LeftSideProductPage {
+  width: 50%;
+}
+.viewProduct-mid-section .productSplit .RightSideProductPage {
+  width: 50%;
+}
+
+.ConfirmationCard {
+  align-items: center;
+  padding: 5em;
+  width: 100%;
+}
+.ConfirmationCard .ConfirmationHeader {
+  align-items: center;
+  width: 70%;
+}
+.ConfirmationCard .ConfirmationSubHeader {
+  font-size: 13px;
+}
+.ConfirmationCard .ConfirmationMid {
+  gap: 0px;
+}
+.ConfirmationCard .ConfirmationSplit {
+  width: 100%;
+  justify-content: center;
+}
+.ConfirmationCard .ConfirmationSplit .ConfirmationLeft {
+  width: 30%;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.ConfirmationCard .ConfirmationSplit .ConfirmationRight {
+  width: 40%;
+  border-style: double;
+  border-color: black;
+  justify-content: center;
+  padding: 30px;
+}
+.ConfirmationCard .ConfirmBtnSplit {
+  width: 75%;
+  margin: 10px;
+  justify-content: space-around;
 }/*# sourceMappingURL=globals.css.map */

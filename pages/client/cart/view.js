@@ -9,7 +9,7 @@ import { useAuth } from '../../../utils/context/authContext';
 import { deleteAllCart, getCartUserUID } from '../../../api/cartData';
 import CartProductCard from '../../../components/client/CartProductCard';
 import {
-  addProductToOrder, createOrder, getSingleActiveOrder,
+  addProductToOrder, createOrder,
 } from '../../../api/orderData';
 
 const initialState = {
@@ -32,7 +32,6 @@ const initialState = {
 
 export default function Cart() {
   const [cartData, setCartData] = useState([]);
-  const [activeOrder, setActiveOrder] = useState();
   const [orderFormData, setOrderFormData] = useState(initialState);
   const [submitted, setSubmitted] = useState(false);
   const router = useRouter();
@@ -84,18 +83,11 @@ export default function Cart() {
 
   console.log(orderFormData);
 
-  const handleCheckout = () => {
-    //   Get newly created Order to tag products to
-    getSingleActiveOrder(user.uid).then(setActiveOrder);
+  const handleCheckout = async () => {
+    addProductToOrder(user.uid);
+    await deleteAllCart(user.uid);
 
-    if (activeOrder) {
-      const asyncFunc = async () => {
-        addProductToOrder(user.uid);
-
-        await deleteAllCart(user.uid).then(() => router.push('/client/order/confirmation'));
-      };
-      asyncFunc();
-    }
+    await router.push('/client/order/confirmation');
   };
 
   useEffect(() => {
@@ -104,7 +96,7 @@ export default function Cart() {
 
   return (
     <>
-      <section className="viewProducttopsection">
+      <section className="viewProduct-top-section">
         <div>
           <p>My Cart</p>
         </div>

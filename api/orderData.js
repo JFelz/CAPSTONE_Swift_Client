@@ -117,7 +117,7 @@ const updateOrder = (id, payload) => new Promise((resolve, error) => {
     .then(async (response) => {
       let data;
       if (response.ok) {
-        data = await response.json();
+        data = await response.text();
         resolve(data);
       }
     })
