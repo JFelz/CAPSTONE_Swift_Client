@@ -143,5 +143,53 @@ background-color: variables.$bg-color;
   margin: 10px;
   justify-content: space-around;
 }
+}
 
+.FormSplit {
+  @extend %display-flex;
+
+  .FormTitle{
+    @extend %display-flex;
+    width: 44%;
+    justify-content: space-around;
+    margin-bottom: 25px;
+  }
+
+  .FormLeft{
+    @extend %display-flex;
+    width: 50%;
+    height: 100vh;
+  }
+
+  .FormRight {
+    @extend %display-column;
+    width: 50%;
+    align-items: center;
+    padding: 50px;
+  }
+
+  .SignUpBtn {
+    background-color: variables.$font-color;
+    height: 48;
+    width:  75%;
+    margin-top: 25px;
+  }
+
+  .SignUpBtn:hover {
+    background-color: variables.$logo-color;
+  }
+}
+
+.LongboardHero {
+  @extend %display-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  .ShopTitle {
+    position: absolute;
+    color:rgb(238, 238, 238);
+    text-shadow: 1.5px 1.5px 1.5px black;
+    font-size: 4em;
+  }
 }
