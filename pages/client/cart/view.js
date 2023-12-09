@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import {
   Button, Card, CardActions, CardContent, Typography,
 } from '@mui/material';
-import Link from 'next/link';
 import { FloatingLabel, Form } from 'react-bootstrap';
 import { useAuth } from '../../../utils/context/authContext';
 import { deleteAllCart, getCartUserUID } from '../../../api/cartData';
@@ -110,7 +109,7 @@ export default function Cart() {
       </section>
       <Card className="cartSplit" style={{ boxShadow: '0px 0px 0px 0px', height: '100%', backgroundColor: '#F2F2F2' }}>
         <CardContent className="LeftSideCartPage">
-          <Button variant="contained"> Hi </Button>
+          <Button variant="contained" className=""> Hi </Button>
           {cartData[0]?.map((prod) => <CartProductCard key={prod.id} orderObj={prod} onUpdate={getCartProducts} />)}
         </CardContent>
         <CardContent className="RightSideCartPage">
