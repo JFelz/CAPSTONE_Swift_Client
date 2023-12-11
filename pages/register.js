@@ -21,7 +21,6 @@ export default function RegisterPage() {
           </div>
           <div className="FormTitle">
             <h6> Already have an account? </h6>
-            <br />
             <Link href="/client/shop/main" passHref>
               <h6 style={{ color: 'green' }}> <u> Sign In </u> </h6>
             </Link>

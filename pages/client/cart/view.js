@@ -119,6 +119,7 @@ export default function Cart() {
                 name="customerName"
                 value={orderFormData.customerName}
                 onChange={handleChange}
+                required
               />
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlInput1" className="SplitInputFields">
@@ -128,6 +129,7 @@ export default function Cart() {
                 name="customerEmail"
                 value={orderFormData.customerEmail}
                 onChange={handleChange}
+                required
               />
               <Form.Control
                 type="number"
@@ -135,6 +137,7 @@ export default function Cart() {
                 name="customerPhoneNumber"
                 value={orderFormData.customerPhoneNumber}
                 onChange={handleChange}
+                required
               />
             </Form.Group>
             <Form.Label>STREET ADDRESS</Form.Label>
@@ -145,6 +148,7 @@ export default function Cart() {
                 name="streetAddress"
                 value={orderFormData.streetAddress}
                 onChange={handleChange}
+                required
               />
             </Form.Group>
             <Form.Label>TOWN/CITY</Form.Label>
@@ -155,6 +159,7 @@ export default function Cart() {
                 name="townCity"
                 value={orderFormData.townCity}
                 onChange={handleChange}
+                required
               />
             </Form.Group>
             <Form.Label>ZIPCODE</Form.Label>
@@ -165,6 +170,7 @@ export default function Cart() {
                 name="zipcode"
                 value={orderFormData.zipcode}
                 onChange={handleChange}
+                required
               />
             </Form.Group>
             <Form.Label>STATE</Form.Label>
@@ -174,6 +180,7 @@ export default function Cart() {
                 name="state"
                 value={orderFormData.state}
                 onChange={handleChange}
+                required
               >
                 <option>Choose a state</option>
                 <option value="AL">AL</option>
@@ -235,6 +242,7 @@ export default function Cart() {
                 name="country"
                 value={orderFormData.country}
                 onChange={handleChange}
+                required
               >
                 <option>Choose a country</option>
                 <option value="USA">USA</option>
@@ -247,6 +255,7 @@ export default function Cart() {
               name="paymentType"
               value={orderFormData.paymentType}
               onChange={handleChange}
+              required
             >
               <option>Choose a Payment option</option>
               <option value="visa">Visa</option>
@@ -262,6 +271,7 @@ export default function Cart() {
               name="shippingMethod"
               value={orderFormData.shippingMethod}
               onChange={handleChange}
+              required
             >
               <option>Choose a Shipping method</option>
               <option value="standard">Standard</option>

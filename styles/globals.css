@@ -4,7 +4,7 @@
   flex-wrap: wrap;
 }
 
-.ConfirmationCard, .ConfirmationCard .ConfirmationHeader, .ConfirmationCard .ConfirmationMid, .ConfirmationCard .ConfirmationSplit .ConfirmationLeft, .ConfirmationCard .ConfirmationSplit .ConfirmationRight, .FormSplit .FormRight {
+.ConfirmationCard, .ConfirmationCard .ConfirmationHeader, .ConfirmationCard .ConfirmationMid, .ConfirmationCard .ConfirmationSplit .ConfirmationLeft, .ConfirmationCard .ConfirmationSplit .ConfirmationRight, .FormSplit .FormRight, .FormSplit .RegisterForm, .AccountDetails {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -132,6 +132,10 @@ body {
   align-items: center;
   padding: 50px;
 }
+.FormSplit .RegisterForm {
+  width: 100%;
+  align-items: center;
+}
 .FormSplit .SignUpBtn {
   background-color: black;
   height: 48;
@@ -152,4 +156,8 @@ body {
   color: rgb(238, 238, 238);
   text-shadow: 1.5px 1.5px 1.5px black;
   font-size: 4em;
+}
+
+.AccountDetails {
+  align-items: center;
 }/*# sourceMappingURL=globals.css.map */

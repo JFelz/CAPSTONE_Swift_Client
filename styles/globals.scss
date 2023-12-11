@@ -168,6 +168,12 @@ background-color: variables.$bg-color;
     padding: 50px;
   }
 
+  .RegisterForm {
+    @extend %display-column;
+    width: 100%;
+    align-items: center;
+  }
+
   .SignUpBtn {
     background-color: variables.$font-color;
     height: 48;
@@ -192,4 +198,9 @@ background-color: variables.$bg-color;
     text-shadow: 1.5px 1.5px 1.5px black;
     font-size: 4em;
   }
+}
+
+.AccountDetails {
+  @extend %display-column;
+  align-items: center;
 }
