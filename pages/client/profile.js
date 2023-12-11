@@ -46,7 +46,7 @@ export default function ProfilePage() {
           >
             <CardMedia
               component="img"
-              alt="green iguana"
+              alt="Profile Image"
               image={currentUser?.imageUrl}
               style={{
                 borderRadius: '100%',

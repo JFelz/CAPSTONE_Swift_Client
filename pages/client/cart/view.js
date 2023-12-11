@@ -72,13 +72,13 @@ export default function Cart() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const payload = {
+    const orderPayload = {
       ...orderFormData,
       customerUid: user?.uid,
       revenue: totalRevenue,
       status: true,
     };
-    createOrder(payload).then(setSubmitted(true));
+    createOrder(orderPayload).then(setSubmitted(true));
   };
 
   console.log(orderFormData);

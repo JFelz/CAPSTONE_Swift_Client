@@ -11,11 +11,13 @@ export default function OrderViewPage() {
 
   const currentOrder = async () => {
     getSingleOrder(id).then(setOrder);
-    await getProductsFromOrder(order?.id).then(setProductList);
+    if (order?.id) {
+      await getProductsFromOrder(order?.id).then(setProductList);
+    }
   };
   useEffect(() => {
     currentOrder();
-  }, [order]);
+  }, [order?.id]);
 
   return (
     <>

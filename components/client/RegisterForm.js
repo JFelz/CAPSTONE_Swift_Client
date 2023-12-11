@@ -2,8 +2,10 @@
 // import { useState } from 'react';
 // import Button from 'react-bootstrap/Button';
 // import Form from 'react-bootstrap/Form';
-import { InputAdornment, TextField } from '@mui/material';
+import { Button, InputAdornment, TextField } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import EmailIcon from '@mui/icons-material/Email';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 // import { registerUser } from '../../utils/auth'; // Update with path to registerUser
 
 function RegisterForm() {
@@ -20,6 +22,7 @@ function RegisterForm() {
   return (
     <>
       <TextField
+        style={{ width: '75%' }}
         id="input-with-icon-textfield"
         label="Full Name"
         InputProps={{
@@ -32,29 +35,36 @@ function RegisterForm() {
         variant="standard"
       />
       <TextField
+        style={{ width: '75%' }}
         id="input-with-icon-textfield"
         label="Email"
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <AccountCircle />
+              <EmailIcon />
             </InputAdornment>
           ),
         }}
         variant="standard"
       />
       <TextField
+        style={{ width: '75%' }}
         id="input-with-icon-textfield"
         label="Phone Number"
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <AccountCircle />
+              <LocalPhoneIcon />
             </InputAdornment>
           ),
         }}
         variant="standard"
       />
+      <Button
+        variant="contained"
+        className="SignUpBtn"
+      > Sign Up
+      </Button>
     </>
 
   );

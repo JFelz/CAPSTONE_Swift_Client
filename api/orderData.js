@@ -7,13 +7,25 @@ const createOrder = (payload) => new Promise((resolve, reject) => {
     body: JSON.stringify(payload),
   })
     .then(async (response) => {
+      console.log('Response Status:', response.status);
+      console.log('Response Headers:', response.headers);
       let data;
       if (response.ok) {
-        data = await response.text();
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          data = await response.json();
+          console.log('Response Data:', data);
+        } else {
+        // Handle non-JSON responses, e.g., plain text errors
+          data = await response.text();
+        }
         resolve(data);
       }
     })
-    .catch(reject);
+    .catch((error) => {
+      console.error('Error Response:', error);
+      reject(error);
+    });
 });
 
 const getAllOrders = () => new Promise((resolve, reject) => {
@@ -64,8 +76,8 @@ const getUserAllOrder = (UID) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getProductsFromOrder = (UID) => new Promise((resolve, reject) => {
-  fetch(`https://localhost:7261/orders/${UID}/products`, {
+const getProductsFromOrder = (Id) => new Promise((resolve, reject) => {
+  fetch(`https://localhost:7261/orders/${Id}/products`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -117,7 +129,7 @@ const updateOrder = (id, payload) => new Promise((resolve, error) => {
     .then(async (response) => {
       let data;
       if (response.ok) {
-        data = await response.text();
+        data = await response.json();
         resolve(data);
       }
     })
