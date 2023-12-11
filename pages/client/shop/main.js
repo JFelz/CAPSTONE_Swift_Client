@@ -8,6 +8,8 @@ export default function Shop() {
       <section>
         <Image
           src="/swift-shop-herov3.svg"
+          alt="Hero"
+          loading="lazy"
           fluid
         />
       </section>

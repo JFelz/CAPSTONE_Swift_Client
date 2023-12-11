@@ -1,7 +1,5 @@
 // import PropTypes from 'prop-types';
 // import { useState } from 'react';
-// import Button from 'react-bootstrap/Button';
-// import Form from 'react-bootstrap/Form';
 import { Button, InputAdornment, TextField } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import EmailIcon from '@mui/icons-material/Email';
@@ -9,10 +7,18 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 // import { registerUser } from '../../utils/auth'; // Update with path to registerUser
 
 function RegisterForm() {
-  // const [formData, setFormData] = useState({
+  // const [registerFormData, setRegisterFormData] = useState();
   //   bio: '',
   //   uid: user.uid,
   // });
+
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setRegisterFormData((prevState) => ({
+  //     ...prevState,
+  //     [name]: value,
+  //   }));
+  // };
 
   // const handleSubmit = (e) => {
   //   e.preventDefault();
@@ -55,7 +61,7 @@ function RegisterForm() {
           required
           id="standard-required"
           label="Required"
-          defaultValue="Hello World"
+          value=""
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
