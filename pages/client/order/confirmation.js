@@ -26,7 +26,7 @@ export default function OrderConfirmationPage() {
   }, []);
 
   useEffect(() => {
-    if (activeOrder) {
+    if (activeOrder?.id) {
       getProductsFromOrder(activeOrder?.id).then(setFullProd);
     }
   }, [activeOrder]);
@@ -36,7 +36,9 @@ export default function OrderConfirmationPage() {
       ...activeOrder,
       status: false,
     };
-    updateOrder(activeOrder?.id, payload);
+    if (activeOrder?.id) {
+      updateOrder(activeOrder?.id, payload);
+    }
   };
 
   handleUpdate();

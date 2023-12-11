@@ -23,6 +23,7 @@
     "@mui/icons-material": "^5.14.18",
     "@mui/material": "^5.14.18",
     "@mui/styled-engine-sc": "^6.0.0-alpha.6",
+    "@mui/system": "^5.14.20",
     "axios": "^0.21.1",
     "bootstrap": "^5.1.3",
     "cors": "^2.8.5",
