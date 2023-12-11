@@ -10,7 +10,7 @@ import ClientOrderCard from '../../components/client/ClientOrderCard';
 
 export default function ProfilePage() {
   const [currentUser, setCurrentUser] = useState();
-  const [currentView, setCurrentView] = useState();
+  const [currentView, setCurrentView] = useState('account');
   const [currentOrder, setCurrentOrder] = useState();
   const { user } = useAuth();
 
@@ -47,7 +47,7 @@ export default function ProfilePage() {
             <CardMedia
               component="img"
               alt="Profile Image"
-              image={currentUser?.imageUrl}
+              image={user.fbUser.photoURL}
               style={{
                 borderRadius: '100%',
                 height: '100px',
@@ -72,10 +72,12 @@ export default function ProfilePage() {
         <section className="RightProfile">
           { currentView === 'account' ? (
             <>
-              <p>{currentUser?.name}</p>
-              <p>{currentUser?.email}</p>
-              <p>{currentUser?.phoneNumber}</p>
-              <p>{currentUser?.bio}</p>
+              <div className="AccountDetails">
+                <p>{currentUser?.name}</p>
+                <p>{currentUser?.email}</p>
+                <p>{currentUser?.phoneNumber}</p>
+                <p>{currentUser?.bio}</p>
+              </div>
             </>
           ) : ('') }
           { currentView === 'order' ? (

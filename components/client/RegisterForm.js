@@ -21,45 +21,52 @@ function RegisterForm() {
 
   return (
     <>
-      <TextField
-        style={{ width: '75%' }}
-        id="input-with-icon-textfield"
-        label="Full Name"
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <AccountCircle />
-            </InputAdornment>
-          ),
-        }}
-        variant="standard"
-      />
-      <TextField
-        style={{ width: '75%' }}
-        id="input-with-icon-textfield"
-        label="Email"
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <EmailIcon />
-            </InputAdornment>
-          ),
-        }}
-        variant="standard"
-      />
-      <TextField
-        style={{ width: '75%' }}
-        id="input-with-icon-textfield"
-        label="Phone Number"
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <LocalPhoneIcon />
-            </InputAdornment>
-          ),
-        }}
-        variant="standard"
-      />
+      <div className="RegisterForm">
+        <TextField
+          style={{ width: '75%' }}
+          id="input-with-icon-textfield"
+          label="Full Name"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <AccountCircle />
+              </InputAdornment>
+            ),
+          }}
+          variant="standard"
+        />
+        <br />
+        <TextField
+          style={{ width: '75%' }}
+          id="input-with-icon-textfield"
+          label="Email"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <EmailIcon />
+              </InputAdornment>
+            ),
+          }}
+          variant="standard"
+        />
+        <br />
+        <TextField
+          style={{ width: '75%' }}
+          required
+          id="standard-required"
+          label="Required"
+          defaultValue="Hello World"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <LocalPhoneIcon />
+              </InputAdornment>
+            ),
+          }}
+          variant="standard"
+        />
+        <br />
+      </div>
       <Button
         variant="contained"
         className="SignUpBtn"
