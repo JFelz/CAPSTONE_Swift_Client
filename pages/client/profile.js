@@ -47,7 +47,7 @@ export default function ProfilePage() {
             <CardMedia
               component="img"
               alt="Profile Image"
-              image={user.fbUser.photoURL}
+              image={user.photoURL}
               style={{
                 borderRadius: '100%',
                 height: '100px',
