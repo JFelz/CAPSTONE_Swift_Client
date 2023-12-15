@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'react-bootstrap/Image';
-import RegisterForm from '../components/client/RegisterForm';
+import RegisterFormClient from '../components/client/RegisterFormClient';
 
 export default function RegisterPage() {
   return (
@@ -25,7 +25,7 @@ export default function RegisterPage() {
               <h6 style={{ color: 'green' }}> <u> Sign In </u> </h6>
             </Link>
           </div>
-          <RegisterForm />
+          <RegisterFormClient />
         </section>
       </section>
     </>

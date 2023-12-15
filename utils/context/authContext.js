@@ -1,5 +1,3 @@
-// Context API Docs: https://beta.reactjs.org/learn/passing-data-deeply-with-context
-
 import React, {
   createContext, //
   useContext,
@@ -7,7 +5,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { checkUser } from '../auth';
+import { checkUser, registerUser } from '../auth';
 import { firebase } from '../client';
 
 const AuthContext = createContext();
@@ -36,12 +34,13 @@ const AuthProvider = (props) => {
         setOAuthUser(fbUser);
         checkUser(fbUser.uid).then((gamerInfo) => {
           let userObj = {};
-          if ('null' in gamerInfo) {
+          if (gamerInfo) {
             userObj = gamerInfo;
           } else {
             userObj = { fbUser, uid: fbUser.uid, ...gamerInfo };
           }
-          setUser(userObj);
+          setUser(fbUser, userObj);
+          registerUser(user);
         });
       } else {
         setOAuthUser(false);

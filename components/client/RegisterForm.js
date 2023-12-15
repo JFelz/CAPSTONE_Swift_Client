@@ -1,117 +1,39 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { Button, InputAdornment, TextField } from '@mui/material';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import EmailIcon from '@mui/icons-material/Email';
-import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-import { useAuth } from '../../utils/context/authContext';
-import { registerUser } from '../../utils/auth';
-import { createCart } from '../../api/cartData';
-// import { registerUser } from '../../utils/auth'; // Update with path to registerUser
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import { registerUser } from '../../utils/auth'; // Update with path to registerUser
 
-function RegisterForm() {
-  const [registerFormData, setRegisterFormData] = useState({
-    name: '',
-    email: '',
-    phoneNumber: null,
+function RegisterForm({ user, updateUser }) {
+  const [formData, setFormData] = useState({
+    bio: '',
+    uid: user.uid,
   });
-  const { user } = useAuth();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setRegisterFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  console.log(registerFormData);
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const payload = {
-      ...registerFormData,
-      uid: user?.uid,
-      isAdmin: false,
-    };
-    registerUser(payload);
-    await createCart(user?.uid);
+    registerUser(formData).then(() => updateUser(user.uid));
   };
 
   return (
-    <>
-      <div className="RegisterForm">
-        <TextField
-          style={{ width: '75%' }}
-          id="input-with-icon-textfield"
-          label="Full Name"
-          name="name"
-          value={registerFormData.name}
-          onChange={handleChange}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <AccountCircle />
-              </InputAdornment>
-            ),
-          }}
-          variant="standard"
-        />
-        <br />
-        <TextField
-          style={{ width: '75%' }}
-          id="input-with-icon-textfield"
-          label="Email"
-          name="email"
-          value={registerFormData.email}
-          onChange={handleChange}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <EmailIcon />
-              </InputAdornment>
-            ),
-          }}
-          variant="standard"
-        />
-        <br />
-        <TextField
-          style={{ width: '75%' }}
-          required
-          id="filled-number"
-          type="number"
-          label="Phone"
-          name="phoneNumber"
-          value={registerFormData.phoneNumber}
-          onChange={handleChange}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <LocalPhoneIcon />
-              </InputAdornment>
-            ),
-          }}
-          variant="standard"
-        />
-        <br />
-      </div>
-      <Button
-        variant="contained"
-        className="SignUpBtn"
-        onClick={handleSubmit}
-      > Sign Up
+    <Form onSubmit={handleSubmit}>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Gamer Bio</Form.Label>
+        <Form.Control as="textarea" name="bio" required placeholder="Enter your Bio" onChange={({ target }) => setFormData((prev) => ({ ...prev, [target.name]: target.value }))} />
+        <Form.Text className="text-muted">Let other gamers know a little bit about you...</Form.Text>
+      </Form.Group>
+      <Button variant="primary" type="submit">
+        Submit
       </Button>
-    </>
-
+    </Form>
   );
 }
 
 RegisterForm.propTypes = {
   user: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    phoneNumber: PropTypes.number.isRequired,
+    uid: PropTypes.string.isRequired,
   }).isRequired,
+  updateUser: PropTypes.func.isRequired,
 };
 
 export default RegisterForm;
