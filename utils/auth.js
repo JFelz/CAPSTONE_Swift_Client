@@ -5,14 +5,13 @@ import { clientCredentials } from './client';
 const checkUser = (uid) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/checkuser/${uid}`, {
     method: 'GET',
-    mode: 'cors',
+    mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      'Access-Control-Allow-Origin': 'https://localhost:7261',
     },
   })
-    .then((resp) => resolve(resp.json()))
+    .then((response) => resolve(response.json()))
     .catch(reject);
 });
 

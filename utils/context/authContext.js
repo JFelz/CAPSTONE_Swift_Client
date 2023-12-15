@@ -40,7 +40,7 @@ const AuthProvider = (props) => {
             userObj = { fbUser, uid: fbUser.uid, ...gamerInfo };
           }
           setUser(fbUser, userObj);
-          registerUser(user);
+          registerUser(fbUser);
         });
       } else {
         setOAuthUser(false);
