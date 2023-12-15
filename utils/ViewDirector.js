@@ -12,6 +12,7 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
   console.log(user);
   // if user state is null, then show loader
   if (userLoading) {
+    console.log('Firebase User is not coming through the ViewDirector')
     return <Loading />;
   }
 

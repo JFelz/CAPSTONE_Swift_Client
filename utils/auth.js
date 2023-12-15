@@ -11,7 +11,13 @@ const checkUser = (uid) => new Promise((resolve, reject) => {
       Accept: 'application/json',
     },
   })
-    .then((response) => resolve(response.json()))
+    .then(async (response) => {
+      let data;
+      if (response.ok) {
+        data = await response.json();
+        resolve(data);
+      }
+    })
     .catch(reject);
 });
 
