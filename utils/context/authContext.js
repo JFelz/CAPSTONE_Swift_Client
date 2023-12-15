@@ -34,12 +34,12 @@ const AuthProvider = (props) => {
         setOAuthUser(fbUser);
         checkUser(fbUser.uid).then((gamerInfo) => {
           let userObj = {};
-          if (gamerInfo) {
+          if ('null' in gamerInfo) {
             userObj = gamerInfo;
           } else {
             userObj = { fbUser, uid: fbUser.uid, ...gamerInfo };
           }
-          setUser(fbUser, userObj);
+          setUser(userObj);
           registerUser(fbUser);
         });
       } else {
