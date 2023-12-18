@@ -16,7 +16,9 @@ function Home() {
       }}
     >
       <h1>Hello, {user.name}! </h1>
-      <p>Your Bio: {user.bio}</p>
+      <p> Your Email: {user.email}</p>
+      <p>Your Phone Number: {user.phoneNumber}</p>
+      <p> Administrator: {user.isAdmin ? 'true' : 'false'}</p>
       <p>Click the button below to logout!</p>
       <Button variant="contained" type="button" size="lg" id="SignOut" onClick={signOut}>
         Sign Out

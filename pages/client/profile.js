@@ -3,8 +3,8 @@ import {
   Button, Card, CardActions, CardContent, CardMedia, Typography,
 } from '@mui/material';
 import { useAuth } from '../../utils/context/authContext';
-import { signOut } from '../../utils/auth';
-import { getUsersUID } from '../../api/userData';
+import { checkUser, signOut } from '../../utils/auth';
+// import { getUsersUID } from '../../api/userData';
 import { getUserAllOrder } from '../../api/orderData';
 import ClientOrderCard from '../../components/client/ClientOrderCard';
 
@@ -15,7 +15,7 @@ export default function ProfilePage() {
   const { user } = useAuth();
 
   const getUser = () => {
-    getUsersUID(user.uid).then(setCurrentUser);
+    checkUser(user.uid).then(setCurrentUser);
   };
 
   const getOrder = () => getUserAllOrder(user.uid).then(setCurrentOrder);
@@ -54,6 +54,8 @@ export default function ProfilePage() {
                 width: '100px',
               }}
             />
+
+            <p>{user.name}</p>
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 {currentUser?.name}
