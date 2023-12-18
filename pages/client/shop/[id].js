@@ -5,9 +5,12 @@ import { Button, Image, Container } from 'react-bootstrap';
 import { getSingleProducts } from '../../../api/productData';
 import { useAuth } from '../../../utils/context/authContext';
 import { addToCart } from '../../../api/cartData';
+import { getProductReviews } from '../../../api/reviewData';
+import ClientReviewCard from '../../../components/client/ClientReviewCard';
 
 export default function ClientProductViewPage() {
   const [product, setProduct] = useState();
+  const [review, setReview] = useState();
   const router = useRouter();
   const { user } = useAuth();
   const { id } = router.query;
@@ -16,6 +19,12 @@ export default function ClientProductViewPage() {
     getSingleProducts(id).then(setProduct);
   };
 
+  const currentReviews = () => {
+    getProductReviews(id).then(setReview);
+  };
+
+  console.log('reviews:', review);
+
   const AddToCartFunction = () => {
     addToCart(user.uid, product.id);
   };
@@ -23,6 +32,7 @@ export default function ClientProductViewPage() {
 
   useEffect(() => {
     currentProduct();
+    currentReviews();
   }, []);
 
   return (
@@ -68,7 +78,10 @@ export default function ClientProductViewPage() {
       </section>
       <section className="viewProduct-bot-section">
         <div>
-          Comment Section
+          <h1> Customer Reviews </h1>
+          <div>
+            {review?.map((rev) => <ClientReviewCard key={rev.id} reviewObj={rev} />)}
+          </div>
         </div>
       </section>
     </>
