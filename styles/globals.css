@@ -4,7 +4,7 @@
   flex-wrap: wrap;
 }
 
-.ConfirmationCard, .ConfirmationCard .ConfirmationHeader, .ConfirmationCard .ConfirmationMid, .ConfirmationCard .ConfirmationSplit .ConfirmationLeft, .ConfirmationCard .ConfirmationSplit .ConfirmationRight, .FormSplit .FormRight, .FormSplit .RegisterForm, .AccountDetails {
+.ConfirmationCard, .ConfirmationCard .ConfirmationHeader, .ConfirmationCard .ConfirmationMid, .ConfirmationCard .ConfirmationSplit .ConfirmationLeft, .ConfirmationCard .ConfirmationSplit .ConfirmationRight, .FormSplit .FormRight, .FormSplit .RegisterForm, .AccountDetails, .ReviewCard, .ReviewCardHeader, .ReviewCardContent, .ReviewSubmitBody {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -160,4 +160,20 @@ body {
 
 .AccountDetails {
   align-items: center;
+}
+
+.ReviewCard {
+  margin-bottom: 50px;
+}
+
+.ReviewCardHeader {
+  padding: 10px;
+}
+
+.ReviewCardContent {
+  padding-left: 10px;
+}
+
+.ReviewSubmitBody {
+  width: 25%;
 }/*# sourceMappingURL=globals.css.map */

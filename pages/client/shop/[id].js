@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Button, Image, Container } from 'react-bootstrap';
+import { Image, Container, CardHeader } from 'react-bootstrap';
+import {
+  Button, Card, CardActions, CardContent, TextField,
+} from '@mui/material';
 import { getSingleProducts } from '../../../api/productData';
 import { useAuth } from '../../../utils/context/authContext';
 import { addToCart } from '../../../api/cartData';
@@ -10,7 +13,7 @@ import ClientReviewCard from '../../../components/client/ClientReviewCard';
 
 export default function ClientProductViewPage() {
   const [product, setProduct] = useState();
-  const [review, setReview] = useState();
+  const [review, setReview] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
   const { id } = router.query;
@@ -80,7 +83,40 @@ export default function ClientProductViewPage() {
         <div>
           <h1> Customer Reviews </h1>
           <div>
-            {review?.map((rev) => <ClientReviewCard key={rev.id} reviewObj={rev} />)}
+            <Button variant="contained" sx={{ margin: '20px' }}> Add Review </Button>
+          </div>
+          <div style={{ margin: '20px' }}>
+            <Card sx={{ maxHeight: '250px' }}>
+              <CardHeader>
+                <h5>{user.name}</h5>
+              </CardHeader>
+              <CardContent className="ReviewSubmitBody">
+                <div style={{ marginBottom: '10px' }}>
+                  <TextField
+                    required
+                    id="standard-required"
+                    label="Subject"
+                    defaultValue="Write a subject line"
+                    variant="standard"
+                  />
+                </div>
+                <div>
+                  <TextField
+                    required
+                    id="standard-required"
+                    label="Body"
+                    defaultValue="Add Review"
+                    variant="standard"
+                  />
+                </div>
+              </CardContent>
+              <CardActions>
+                <Button> Submit Review </Button>
+              </CardActions>
+            </Card>
+          </div>
+          <div className="ReviewCard">
+            { review[0]?.reviewList[0]?.id ? review[0]?.reviewList?.map((rev) => <ClientReviewCard key={rev.id} reviewObj={rev} />) : <h5 style={{ display: 'flex', justifyContent: 'center', margin: '20px' }}>Sorry, there arent any reviews yet</h5>}
           </div>
         </div>
       </section>

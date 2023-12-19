@@ -1,34 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardContent from '@mui/material/CardContent';
+import { Rating } from '@mui/material';
 import CardActions from '@mui/material/CardActions';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
+import { useAuth } from '../../utils/context/authContext';
 
 export default function ClientReviewCard({ reviewObj }) {
+  const { user } = useAuth();
+
   return (
     <>
-      <Card>
-        <CardHeader
-          title="Shrimp and Chorizo Paella"
-          subheader="September 14, 2016"
-        />
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            {reviewObj?.content}
-          </Typography>
-        </CardContent>
-        <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon />
-          </IconButton>
+      <Card sx={{ maxHeight: '200px', marginBottom: '10px' }}>
+        <div className="ReviewCardHeader">
+          <Rating name="read-only" value={reviewObj.rating} readOnly />
+          <h5>{reviewObj?.subject}</h5>
+          <h6>{user?.name}</h6>
+        </div>
+        <div className="ReviewCardContent">
+          <p>{reviewObj?.content}</p>
+        </div>
+        <CardActions>
+          <div>
+            Edit
+          </div>
         </CardActions>
       </Card>
     </>
@@ -38,6 +32,8 @@ export default function ClientReviewCard({ reviewObj }) {
 ClientReviewCard.propTypes = {
   reviewObj: PropTypes.shape({
     customerUid: PropTypes.string.isRequired,
+    subject: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
   }).isRequired,
 };

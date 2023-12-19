@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Typography, CardContent, Rating, CardActionArea, CardMedia,
+  Typography, CardContent, Rating, CardActionArea, CardMedia, Button,
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
@@ -20,13 +20,7 @@ export default function ClientProductCard({ prodObj }) {
             title="green iguana"
           />
           <CardContent>
-            <Rating
-              name="simple-controlled"
-              value={value}
-              onChange={(event, newValue) => {
-                setValue(newValue);
-              }}
-            />
+            <Rating name="read-only" value={value} readOnly />
             <Typography gutterBottom component="div" style={{ fontSize: '.85em' }}>
               {prodObj.title}
             </Typography>
@@ -34,6 +28,7 @@ export default function ClientProductCard({ prodObj }) {
               ${prodObj.price}
             </Typography>
           </CardContent>
+          <Button onClick={setValue}> Remove Me </Button>
         </CardActionArea>
       </Link>
     </>
