@@ -204,3 +204,24 @@ background-color: variables.$bg-color;
   @extend %display-column;
   align-items: center;
 }
+
+.ReviewCard {
+  @extend %display-column;
+  margin-bottom: 50px;
+}
+
+.ReviewCardHeader {
+  @extend %display-column;
+  padding: 10px;
+}
+
+.ReviewCardContent {
+  @extend %display-column;
+  padding-left: 10px;
+}
+
+.ReviewSubmitBody {
+  @extend %display-column;
+  width: 25%;
+  
+}
