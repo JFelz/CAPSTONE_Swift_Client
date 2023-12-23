@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-  Typography, CardContent, Rating, CardActionArea, CardMedia, Button,
+  Typography, CardContent, Rating, CardActionArea, CardMedia,
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 
 export default function ClientProductCard({ prodObj }) {
-  const [value, setValue] = useState();
   return (
     <>
       <Link href={`/client/shop/${prodObj.id}`} passHref>
@@ -17,10 +16,10 @@ export default function ClientProductCard({ prodObj }) {
           <CardMedia
             sx={{ height: 300 }}
             image={prodObj?.imageUrl1}
-            title="green iguana"
+            title={prodObj?.title}
           />
           <CardContent>
-            <Rating name="read-only" value={value} readOnly />
+            <Rating name="read-only" value={0} readOnly />
             <Typography gutterBottom component="div" style={{ fontSize: '.85em' }}>
               {prodObj.title}
             </Typography>
@@ -28,7 +27,6 @@ export default function ClientProductCard({ prodObj }) {
               ${prodObj.price}
             </Typography>
           </CardContent>
-          <Button onClick={setValue}> Remove Me </Button>
         </CardActionArea>
       </Link>
     </>

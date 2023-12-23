@@ -222,6 +222,39 @@ background-color: variables.$bg-color;
 
 .ReviewSubmitBody {
   @extend %display-column;
-  width: 25%;
-  
+  width: 50%;
+}
+
+#CommentBtn {
+  background-color: variables.$logo-color;
+}
+
+.Disclaimer {
+  @extend %display-flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#footer {
+  @extend %display-column;
+  background-color: #141718;
+  color: white;
+  height: 20em;
+  padding: 50px;
+
+  .footerTop {
+    @extend %display-flex;
+    justify-content: space-between;
+  }
+
+  .pagelinks {
+    @extend %display-flex;
+  }
+
+  .footerBottom {
+    @extend %display-flex;
+    justify-content: space-between;
+  }
 }

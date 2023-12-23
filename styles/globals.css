@@ -1,10 +1,10 @@
-.ProfileTitle, .RenderCards, .SplitProfile, .cartSplit, .viewProduct-top-section, .viewProduct-mid-section, .viewProduct-mid-section .productSplit, .viewProduct-mid-section .productSplit .LeftSideProductPage, .viewProduct-mid-section .productSplit .RightSideProductPage, .ConfirmationCard .ConfirmationSplit, .ConfirmationCard .ConfirmBtnSplit, .FormSplit, .FormSplit .FormTitle, .FormSplit .FormLeft, .LongboardHero {
+.ProfileTitle, .RenderCards, .SplitProfile, .cartSplit, .viewProduct-top-section, .viewProduct-mid-section, .viewProduct-mid-section .productSplit, .viewProduct-mid-section .productSplit .LeftSideProductPage, .viewProduct-mid-section .productSplit .RightSideProductPage, .ConfirmationCard .ConfirmationSplit, .ConfirmationCard .ConfirmBtnSplit, .FormSplit, .FormSplit .FormTitle, .FormSplit .FormLeft, .LongboardHero, .Disclaimer, #footer .footerTop, #footer .pagelinks, #footer .footerBottom {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-.ConfirmationCard, .ConfirmationCard .ConfirmationHeader, .ConfirmationCard .ConfirmationMid, .ConfirmationCard .ConfirmationSplit .ConfirmationLeft, .ConfirmationCard .ConfirmationSplit .ConfirmationRight, .FormSplit .FormRight, .FormSplit .RegisterForm, .AccountDetails, .ReviewCard, .ReviewCardHeader, .ReviewCardContent, .ReviewSubmitBody {
+.ConfirmationCard, .ConfirmationCard .ConfirmationHeader, .ConfirmationCard .ConfirmationMid, .ConfirmationCard .ConfirmationSplit .ConfirmationLeft, .ConfirmationCard .ConfirmationSplit .ConfirmationRight, .FormSplit .FormRight, .FormSplit .RegisterForm, .AccountDetails, .ReviewCard, .ReviewCardHeader, .ReviewCardContent, .ReviewSubmitBody, #footer {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -175,5 +175,29 @@ body {
 }
 
 .ReviewSubmitBody {
-  width: 25%;
+  width: 50%;
+}
+
+#CommentBtn {
+  background-color: #EC8D00;
+}
+
+.Disclaimer {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#footer {
+  background-color: #141718;
+  color: white;
+  height: 20em;
+  padding: 50px;
+}
+#footer .footerTop {
+  justify-content: space-between;
+}
+#footer .footerBottom {
+  justify-content: space-between;
 }/*# sourceMappingURL=globals.css.map */

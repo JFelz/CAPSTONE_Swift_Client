@@ -10,6 +10,18 @@
 //     .catch(reject);
 // });
 
+const returnUserUID = (uid) => new Promise((resolve, reject) => {
+  fetch(`https:localhost:7261/checkuser/auth/${uid}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.text())
+    .then(resolve)
+    .catch(reject);
+});
+
 const getSingleUser = (Id) => new Promise((resolve, reject) => {
   fetch(`https:localhost:7261/users/byIden/${Id}`, {
     method: 'GET',
@@ -49,6 +61,7 @@ const registerNewUser = (payload) => new Promise((resolve, reject) => {
 
 export {
   registerNewUser,
+  returnUserUID,
   getSingleUser,
   deleteProduct,
 };

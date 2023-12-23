@@ -1,28 +1,76 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Image, Container, CardHeader } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
+import ErrorIcon from '@mui/icons-material/Error';
 import {
-  Button, Card, CardActions, CardContent, TextField,
+  Button, Card, CardActions, CardMedia, Rating, TextField, Typography,
 } from '@mui/material';
 import { getSingleProducts } from '../../../api/productData';
 import { useAuth } from '../../../utils/context/authContext';
 import { addToCart } from '../../../api/cartData';
-import { getProductReviews } from '../../../api/reviewData';
+import { addProductReview, getProductReviews } from '../../../api/reviewData';
 import ClientReviewCard from '../../../components/client/ClientReviewCard';
 
 export default function ClientProductViewPage() {
+  const router = useRouter();
+  const { id } = router.query;
+  const { user } = useAuth();
+  const [show, setShow] = useState(false);
   const [product, setProduct] = useState();
   const [review, setReview] = useState([]);
-  const router = useRouter();
-  const { user } = useAuth();
-  const { id } = router.query;
+  const [reviewData, setReviewData] = useState({
+    subject: '',
+    content: '',
+    customerUid: user?.uid,
+    rating: 0,
+  });
 
   const currentProduct = () => {
     getSingleProducts(id).then(setProduct);
   };
 
   const currentReviews = () => {
+    getProductReviews(id).then(setReview);
+  };
+
+  const handleShow = () => {
+    setShow(true);
+  };
+
+  console.log('Current show value:', show);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    const numericValue = name === 'rating' ? parseFloat(value) : value;
+    setReviewData((prevState) => ({
+      ...prevState,
+      [name]: numericValue,
+    }));
+    console.log(reviewData);
+  };
+
+  console.log('UID:', user?.uid);
+
+  const handleSubmit = async () => {
+    try {
+      if (user?.uid) {
+        setReviewData((prevState) => ({
+          ...prevState,
+        }));
+        const payload = {
+          ...reviewData,
+        };
+        await addProductReview(id, payload);
+        setShow(false);
+        setReviewData(null);
+      }
+    } catch (err) {
+      alert('Problem:', err);
+    }
+  };
+
+  const onUpdate = () => {
     getProductReviews(id).then(setReview);
   };
 
@@ -50,11 +98,14 @@ export default function ClientProductViewPage() {
       <section className="viewProduct-mid-section">
         <div className="productSplit">
           <div className="LeftSideProductPage">
-            <Image
-              src={product?.imageUrl1}
-              alt="Product Image"
-              fluid
-            />
+            <Card sx={{ width: '100%' }}>
+              <CardMedia
+                sx={{ height: '100%', width: '100%' }}
+                image={product?.imageUrl1}
+                title={product?.title}
+                fluid
+              />
+            </Card>
           </div>
           <Container className="RightSideProductPage">
             Right Side
@@ -83,41 +134,67 @@ export default function ClientProductViewPage() {
         <div>
           <h1> Customer Reviews </h1>
           <div>
-            <Button variant="contained" sx={{ margin: '20px' }}> Add Review </Button>
+            <Button variant="contained" sx={{ margin: '20px' }} onClick={handleShow}> Submit A Review </Button>
           </div>
-          <div style={{ margin: '20px' }}>
-            <Card sx={{ maxHeight: '250px' }}>
-              <CardHeader>
-                <h5>{user.name}</h5>
-              </CardHeader>
-              <CardContent className="ReviewSubmitBody">
-                <div style={{ marginBottom: '10px' }}>
-                  <TextField
-                    required
-                    id="standard-required"
-                    label="Subject"
-                    defaultValue="Write a subject line"
-                    variant="standard"
-                  />
+        </div>
+        { show
+          ? (
+            <>
+              <Card sx={{ marginBottom: '20px' }}>
+                <div style={{ margin: '20px' }}>
+                  <div>
+                    <h5>{user.name}</h5>
+                  </div>
+                  <div className="ReviewSubmitBody">
+                    <Typography> Overall Rating </Typography>
+                    <Rating
+                      name="rating"
+                      defaultValue={0}
+                      value={reviewData?.rating}
+                      onChange={handleChange}
+                      precision={1}
+                    />
+                  </div>
+                  <div className="Disclaimer">
+                    <ErrorIcon />
+                    <Typography style={{ fontSize: '15px' }}> Please press the submit button at the bottom in order to save your changes </Typography>
+                  </div>
+                  <div style={{ marginBottom: '20px' }}>
+                    <TextField
+                      required
+                      id="standard-required"
+                      label="Add a headline"
+                      name="subject"
+                      value={reviewData?.subject}
+                      onChange={handleChange}
+                      variant="standard"
+                      style={{ width: '50%' }}
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      required
+                      id="outlined-multiline-static"
+                      label="Write your review"
+                      name="content"
+                      value={reviewData?.content}
+                      onChange={handleChange}
+                      multiline
+                      rows={3}
+                      variant="outlined"
+                      style={{ width: '100%' }}
+                    />
+                  </div>
+                  <CardActions sx={{ paddingTop: '20px' }}>
+                    <Button variant="contained" id="CommentBtn" onClick={() => { handleSubmit().then(() => onUpdate()); }}> Submit </Button>
+                    <Button variant="outline" onClick={() => { setShow(false); }}> Cancel </Button>
+                  </CardActions>
                 </div>
-                <div>
-                  <TextField
-                    required
-                    id="standard-required"
-                    label="Body"
-                    defaultValue="Add Review"
-                    variant="standard"
-                  />
-                </div>
-              </CardContent>
-              <CardActions>
-                <Button> Submit Review </Button>
-              </CardActions>
-            </Card>
-          </div>
-          <div className="ReviewCard">
-            { review[0]?.reviewList[0]?.id ? review[0]?.reviewList?.map((rev) => <ClientReviewCard key={rev.id} reviewObj={rev} />) : <h5 style={{ display: 'flex', justifyContent: 'center', margin: '20px' }}>Sorry, there arent any reviews yet</h5>}
-          </div>
+              </Card>
+            </>
+          ) : ('')}
+        <div className="ReviewCard">
+          { review[0]?.reviewList[0]?.id ? review[0]?.reviewList?.map((rev) => <ClientReviewCard key={rev.id} reviewObj={rev} onUpdate={currentReviews} />) : <h5 style={{ display: 'flex', justifyContent: 'center', margin: '20px' }}>Sorry, there arent any reviews yet</h5>}
         </div>
       </section>
     </>

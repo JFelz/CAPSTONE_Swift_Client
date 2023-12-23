@@ -1,12 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from '@mui/material/Card';
-import { Rating } from '@mui/material';
+import { Button, Rating } from '@mui/material';
 import CardActions from '@mui/material/CardActions';
 import { useAuth } from '../../utils/context/authContext';
+import { deleteReview } from '../../api/reviewData';
 
-export default function ClientReviewCard({ reviewObj }) {
+export default function ClientReviewCard({ reviewObj, onUpdate }) {
   const { user } = useAuth();
+
+  const deleteCurrentReview = () => {
+    if (window.confirm(`Are you sure you want to delete this review? ${reviewObj?.id})`)) {
+      deleteReview(reviewObj?.id).then(() => onUpdate());
+    }
+  };
 
   return (
     <>
@@ -20,9 +27,9 @@ export default function ClientReviewCard({ reviewObj }) {
           <p>{reviewObj?.content}</p>
         </div>
         <CardActions>
-          <div>
-            Edit
-          </div>
+          { reviewObj?.customerUid === user?.uid ? (
+            <Button onClick={deleteCurrentReview}> Delete </Button>
+          ) : ('')}
         </CardActions>
       </Card>
     </>
@@ -31,9 +38,11 @@ export default function ClientReviewCard({ reviewObj }) {
 
 ClientReviewCard.propTypes = {
   reviewObj: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     customerUid: PropTypes.string.isRequired,
     subject: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
   }).isRequired,
+  onUpdate: PropTypes.func.isRequired,
 };
