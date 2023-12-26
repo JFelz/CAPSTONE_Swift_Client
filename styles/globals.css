@@ -1,10 +1,10 @@
-.ProfileTitle, .RenderCards, .SplitProfile, .cartSplit, .viewProduct-top-section, .viewProduct-mid-section, .viewProduct-mid-section .productSplit, .viewProduct-mid-section .productSplit .LeftSideProductPage, .viewProduct-mid-section .productSplit .RightSideProductPage, .ConfirmationCard .ConfirmationSplit, .ConfirmationCard .ConfirmBtnSplit, .FormSplit, .FormSplit .FormTitle, .FormSplit .FormLeft, .LongboardHero, .Disclaimer, #footer .footerTop, #footer .pagelinks, #footer .footerBottom {
+.ProfileTitle, .RenderCards, .SplitProfile, .cartSplit, .viewProduct-top-section, .viewProduct-mid-section, .viewProduct-mid-section .productSplit, .viewProduct-mid-section .productSplit .LeftSideProductPage, .viewProduct-mid-section .productSplit .RightSideProductPage, .ConfirmationCard .ConfirmationSplit, .ConfirmationCard .ConfirmBtnSplit, .FormSplit, .FormSplit .FormTitle, .FormSplit .FormLeft, .LongboardHero, .Disclaimer, #footer .footerTop, #footer .pagelinks, #footer .SocialLinks, #footer .footerBottom, #footer .footerBottom .footerBottom_2, .NewsletterBg .NewsletterField .InputContainer {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-.ConfirmationCard, .ConfirmationCard .ConfirmationHeader, .ConfirmationCard .ConfirmationMid, .ConfirmationCard .ConfirmationSplit .ConfirmationLeft, .ConfirmationCard .ConfirmationSplit .ConfirmationRight, .FormSplit .FormRight, .FormSplit .RegisterForm, .AccountDetails, .ReviewCard, .ReviewCardHeader, .ReviewCardContent, .ReviewSubmitBody, #footer {
+.ConfirmationCard, .ConfirmationCard .ConfirmationHeader, .ConfirmationCard .ConfirmationMid, .ConfirmationCard .ConfirmationSplit .ConfirmationLeft, .ConfirmationCard .ConfirmationSplit .ConfirmationRight, .FormSplit .FormRight, .FormSplit .RegisterForm, .AccountDetails, .ReviewCard, .ReviewCardHeader, .ReviewCardContent, .ReviewSubmitBody, #footer, .NewsletterBg .NewsletterField .NewsletterTitle {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -192,12 +192,58 @@ body {
 #footer {
   background-color: #141718;
   color: white;
-  height: 20em;
-  padding: 50px;
+  height: 22em;
+  font-size: 12px;
 }
 #footer .footerTop {
   justify-content: space-between;
+  width: 100%;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 5%;
+}
+#footer .pagelinks {
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 20%;
+}
+#footer .SocialLinks {
+  justify-content: space-around;
+  width: 17%;
 }
 #footer .footerBottom {
+  flex-wrap: nowrap;
   justify-content: space-between;
+  width: 100%;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 4%;
+}
+#footer .footerBottom .footerBottom_2 {
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 20%;
+}
+
+.NewsletterBg {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 10%;
+}
+.NewsletterBg .NewsletterField {
+  position: absolute;
+  margin: 20px;
+  margin-right: 15%;
+  margin-top: 3%;
+}
+.NewsletterBg .NewsletterField .NewsletterTitle {
+  align-items: flex-end;
+}
+.NewsletterBg .NewsletterField .InputContainer {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  width: 100%;
 }/*# sourceMappingURL=globals.css.map */
