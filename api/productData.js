@@ -1,5 +1,5 @@
 const getAllProducts = () => new Promise((resolve, reject) => {
-  fetch('https:localhost:7261/products', {
+  fetch('https://localhost:7261/products', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -11,7 +11,7 @@ const getAllProducts = () => new Promise((resolve, reject) => {
 });
 
 const getSingleProducts = (Id) => new Promise((resolve, reject) => {
-  fetch(`https:localhost:7261/products/${Id}`, {
+  fetch(`https://localhost:7261/products/${Id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ const getSingleProducts = (Id) => new Promise((resolve, reject) => {
 });
 
 const deleteProduct = (id) => new Promise((resolve, reject) => {
-  fetch(`https:localhost:7261/products/remove/${id}`, {
+  fetch(`https://localhost:7261/products/remove/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ const deleteProduct = (id) => new Promise((resolve, reject) => {
 });
 
 const createNewProducts = (payload) => new Promise((resolve, reject) => {
-  fetch('https:localhost:7261/products/new', {
+  fetch('https://localhost:7261/products/new', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ const createNewProducts = (payload) => new Promise((resolve, reject) => {
 });
 
 const updateProducts = (id, payload) => new Promise((resolve, error) => {
-  fetch(`https:localhost:7261/products/update/${id}`, {
+  fetch(`https://localhost:7261/products/update/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',

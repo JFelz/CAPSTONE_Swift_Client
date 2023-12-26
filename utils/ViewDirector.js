@@ -4,6 +4,7 @@ import Loading from '../components/client/Loading';
 import Signin from '../components/client/Signin';
 import NavBar from '../components/client/NavBar';
 import RegisterForm from '../components/client/RegisterForm';
+import FooterPage from '../components/client/Footer';
 
 const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) => {
   const { user, userLoading, updateUser } = useAuth();
@@ -20,6 +21,7 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
       <>
         <NavBar /> {/* NavBar only visible if user is logged in and is in every view */}
         <div className="container">{'valid' in user ? <RegisterForm user={user} updateUser={updateUser} /> : <Component {...pageProps} />}</div>
+        <FooterPage />
       </>
     );
   }

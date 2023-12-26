@@ -6,8 +6,9 @@ import {
 } from 'react-bootstrap';
 import { createNewProducts, getAllProducts, updateProducts } from '../../../api/productData';
 import ProductCard from '../../../components/admin/AdminProductCard';
-import { getUsersUID } from '../../../api/userData';
+
 import { useAuth } from '../../../utils/context/authContext';
+import { returnUserUID } from '../../../api/userData';
 
 const initialState = {
   adminId: null,
@@ -54,7 +55,7 @@ export default function ProductsPage({ editProduct }) {
   };
 
   const getUserId = () => {
-    getUsersUID(user.uid).then(setCurrentUser);
+    returnUserUID(user.uid).then(setCurrentUser);
   };
 
   console.log('current user:', currentUser);

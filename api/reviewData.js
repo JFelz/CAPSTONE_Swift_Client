@@ -82,8 +82,22 @@ const getProductReviews = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const addProductReview = (id, payload) => new Promise((resolve, reject) => {
+  fetch(`https:localhost:7261/products/${id}/add`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
 export {
   getAllReviews,
+  addProductReview,
   getSingleReview,
   getProductReviews,
   createReview,
