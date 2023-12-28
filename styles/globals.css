@@ -1,10 +1,10 @@
-.ProfileTitle, .RenderCards, .SplitProfile, .cartSplit, .viewProduct-top-section, .viewProduct-mid-section, .viewProduct-mid-section .productSplit, .viewProduct-mid-section .productSplit .LeftSideProductPage, .viewProduct-mid-section .productSplit .RightSideProductPage, .ConfirmationCard .ConfirmationSplit, .ConfirmationCard .ConfirmBtnSplit, .FormSplit, .FormSplit .FormTitle, .FormSplit .FormLeft, .LongboardHero, .Disclaimer, #footer .footerTop, #footer .pagelinks, #footer .SocialLinks, #footer .footerBottom, #footer .footerBottom .footerBottom_2, .NewsletterBg .NewsletterField .InputContainer {
+.ProfileTitle, .RenderCards, .SplitProfile, .cartSplit, .viewProduct-top-section, .viewProduct-mid-section, .viewProduct-mid-section .productSplit, .viewProduct-mid-section .productSplit .LeftSideProductPage, .viewProduct-mid-section .productSplit .RightSideProductPage, .ConfirmationCard .ConfirmationSplit, .ConfirmationCard .ConfirmBtnSplit, .FormSplit, .FormSplit .FormTitle, .FormSplit .FormLeft, .LongboardHero, .Disclaimer, #footer .footerTop, #footer .pagelinks, #footer .SocialLinks, #footer .footerBottom, #footer .footerBottom .footerBottom_2, .NewsletterBg .NewsletterField .InputContainer, .CarouselHeroImage, .GridContainer, .GridContainer .MainGridLeft {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-.ConfirmationCard, .ConfirmationCard .ConfirmationHeader, .ConfirmationCard .ConfirmationMid, .ConfirmationCard .ConfirmationSplit .ConfirmationLeft, .ConfirmationCard .ConfirmationSplit .ConfirmationRight, .FormSplit .FormRight, .FormSplit .RegisterForm, .AccountDetails, .ReviewCard, .ReviewCardHeader, .ReviewCardContent, .ReviewSubmitBody, #footer, .NewsletterBg .NewsletterField .NewsletterTitle {
+.ConfirmationCard, .ConfirmationCard .ConfirmationHeader, .ConfirmationCard .ConfirmationMid, .ConfirmationCard .ConfirmationSplit .ConfirmationLeft, .ConfirmationCard .ConfirmationSplit .ConfirmationRight, .FormSplit .FormRight, .FormSplit .RegisterForm, .AccountDetails, .ReviewCard, .ReviewCardHeader, .ReviewCardContent, .ReviewSubmitBody, #footer, .NewsletterBg .NewsletterField .NewsletterTitle, .GridContainer .MainGridRight {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -33,6 +33,10 @@ body {
 .SplitProfile .RightProfile {
   width: 60%;
   padding: 5px;
+}
+
+#CartButton {
+  background-color: #141718;
 }
 
 .cartSplit {
@@ -68,10 +72,12 @@ body {
 }
 
 .viewProduct-top-section {
-  justify-content: center;
+  justify-content: flex-start;
   font-size: 3em;
   font-style: normal;
-  margin: 4%;
+  margin: 3%;
+  margin-bottom: 0%;
+  margin-left: 0%;
 }
 
 .viewProduct-mid-section .productSplit .LeftSideProductPage {
@@ -79,6 +85,15 @@ body {
 }
 .viewProduct-mid-section .productSplit .RightSideProductPage {
   width: 50%;
+}
+
+#ShowSubmitReview {
+  background-color: #EC8D00;
+  margin-bottom: 2%;
+}
+
+#ShowSubmitReview:hover {
+  background-color: #ca7900;
 }
 
 .ConfirmationCard {
@@ -246,4 +261,26 @@ body {
   flex-wrap: nowrap;
   align-items: flex-end;
   width: 100%;
+}
+
+.CarouselHeroImage {
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+}
+
+.GridContainer {
+  justify-content: space-between;
+  padding: 5em;
+  height: 100vh;
+  width: 100%;
+}
+.GridContainer .MainGridLeft {
+  width: 49%;
+  height: 37em;
+}
+.GridContainer .MainGridRight {
+  align-items: space-around;
+  width: 49%;
+  height: 30em;
 }/*# sourceMappingURL=globals.css.map */

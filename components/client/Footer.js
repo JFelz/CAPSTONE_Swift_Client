@@ -95,9 +95,15 @@ export default function FooterPage() {
             fluid
           />
           <div className="pagelinks">
-            <p>Home</p>
-            <p>Shop</p>
-            <p>About Us</p>
+            <Link href="/" passHref>
+              <p>Home</p>
+            </Link>
+            <Link href="/client/shop/main" passHref>
+              <p>Shop</p>
+            </Link>
+            <Link href="/" passHref>
+              <p>About Us</p>
+            </Link>
           </div>
         </div>
         <div className="footerBottom">
