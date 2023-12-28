@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Container } from 'react-bootstrap';
+import { Carousel, Container, Image } from 'react-bootstrap';
 import ErrorIcon from '@mui/icons-material/Error';
 import {
-  Button, Card, CardActions, CardMedia, Rating, TextField, Typography,
+  Button, Card, CardActions, Rating, TextField, Typography,
 } from '@mui/material';
 import { getSingleProducts } from '../../../api/productData';
 import { useAuth } from '../../../utils/context/authContext';
@@ -98,17 +98,42 @@ export default function ClientProductViewPage() {
       <section className="viewProduct-mid-section">
         <div className="productSplit">
           <div className="LeftSideProductPage">
-            <Card sx={{ width: '100%' }}>
-              <CardMedia
-                sx={{ height: '100%', width: '100%' }}
-                image={product?.imageUrl1}
-                title={product?.title}
-                fluid
-              />
+            <Card sx={{ width: '100%', height: '100%' }}>
+              <Carousel>
+                <Carousel.Item>
+                  <Image
+                    width={700}
+                    height={700}
+                    className="d-block w-100"
+                    src={product?.imageUrl1}
+                    alt={product?.title}
+                    style={{ objectFit: 'contain', borderRadius: '10px' }}
+                  />
+                </Carousel.Item>
+                <Carousel.Item>
+                  <Image
+                    width={700}
+                    height={700}
+                    className="d-block w-100"
+                    src={product?.imageUrl2}
+                    alt={product?.title}
+                    style={{ objectFit: 'contain', borderRadius: '10px' }}
+                  />
+                </Carousel.Item>
+                <Carousel.Item>
+                  <Image
+                    width={700}
+                    height={700}
+                    className="d-block w-100"
+                    src={product?.imageUrl3}
+                    alt={product?.title}
+                    style={{ objectFit: 'contain', borderRadius: '10px' }}
+                  />
+                </Carousel.Item>
+              </Carousel>
             </Card>
           </div>
           <Container className="RightSideProductPage">
-            Right Side
             <Container className="RightContainer">
               <h1>{product?.title}</h1>
               <p> {product?.description} </p>
@@ -122,7 +147,7 @@ export default function ClientProductViewPage() {
               </div>
               <p> Price: ${product?.price} </p>
               <section className="ViewPageCartSection">
-                <Button className="CartButton" onClick={AddToCartFunction}>
+                <Button id="CartButton" variant="contained" onClick={AddToCartFunction}>
                   Add To Cart
                 </Button>
               </section>
@@ -132,9 +157,9 @@ export default function ClientProductViewPage() {
       </section>
       <section className="viewProduct-bot-section">
         <div>
-          <h1> Customer Reviews </h1>
+          <h1 style={{ marginTop: '4%' }}> Customer Reviews </h1>
           <div>
-            <Button variant="contained" sx={{ margin: '20px' }} onClick={handleShow}> Submit A Review </Button>
+            <Button variant="contained" id="ShowSubmitReview" onClick={handleShow}> Submit A Review </Button>
           </div>
         </div>
         { show
@@ -194,7 +219,7 @@ export default function ClientProductViewPage() {
             </>
           ) : ('')}
         <div className="ReviewCard">
-          { review[0]?.reviewList[0]?.id ? review[0]?.reviewList?.map((rev) => <ClientReviewCard key={rev.id} reviewObj={rev} onUpdate={currentReviews} />) : <h5 style={{ display: 'flex', justifyContent: 'center', margin: '20px' }}>Sorry, there arent any reviews yet</h5>}
+          { review[0]?.reviewList[0]?.id ? review[0]?.reviewList?.map((rev) => <ClientReviewCard key={rev.id} reviewObj={rev} onUpdate={currentReviews} />) : <h5 style={{ display: 'flex', justifyContent: 'center', margin: '20px' }}>No reviews yet</h5>}
         </div>
       </section>
     </>

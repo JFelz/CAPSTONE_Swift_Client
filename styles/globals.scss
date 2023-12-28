@@ -33,6 +33,10 @@ background-color: variables.$bg-color;
   }
 }
 
+#CartButton {
+  background-color: #141718;
+}
+
 .cartSplit {
   @extend %display-flex;
   width: 100%;
@@ -73,10 +77,12 @@ background-color: variables.$bg-color;
 
 .viewProduct-top-section {
   @extend %display-flex;
-  justify-content: center;
+  justify-content: flex-start;
   font-size: 3em;
   font-style: normal;
-  margin: 4%;
+  margin: 3%;
+  margin-bottom: 0%;
+  margin-left: 0%;
 }
 
 .viewProduct-mid-section {
@@ -94,6 +100,15 @@ background-color: variables.$bg-color;
       width: 50%;
     }
   }
+}
+
+#ShowSubmitReview {
+  background-color: variables.$logo-color;
+  margin-bottom: 2%;
+}
+
+#ShowSubmitReview:hover {
+  background-color: variables.$logo-hover-color;
 }
 
 .ConfirmationCard {
@@ -310,5 +325,33 @@ background-color: variables.$bg-color;
       align-items: flex-end;
       width: 100%;
     }
+  }
+}
+
+.CarouselHeroImage {
+  @extend %display-flex;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+}
+
+.GridContainer {
+  @extend %display-flex;
+  justify-content: space-between;
+  padding: 5em;
+  height: 100vh;
+  width: 100%;
+
+  .MainGridLeft {
+    @extend %display-flex;
+    width: 49%;
+    height: 37em;
+  }
+
+  .MainGridRight {
+    @extend %display-column;
+    align-items: space-around;
+    width: 49%;
+    height: 30em;
   }
 }

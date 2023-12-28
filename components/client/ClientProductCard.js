@@ -1,9 +1,10 @@
 import React from 'react';
 import {
-  Typography, CardContent, Rating, CardActionArea, CardMedia,
+  Typography, CardContent, Rating, CardActionArea,
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+import { Image } from 'react-bootstrap';
 
 export default function ClientProductCard({ prodObj }) {
   return (
@@ -13,10 +14,12 @@ export default function ClientProductCard({ prodObj }) {
           width: 220, margin: '5px', boxShadow: '0px 0px 0px 0px', borderRadius: '0px', backgroundColor: '#F2F2F2',
         }}
         >
-          <CardMedia
-            sx={{ height: 300 }}
-            image={prodObj?.imageUrl1}
-            title={prodObj?.title}
+          {/* Fix image cards on Shop page */}
+          <Image
+            style={{ height: 300 }}
+            src={prodObj?.imageUrl1}
+            alt={prodObj?.title}
+            fluid
           />
           <CardContent>
             <Rating name="read-only" value={0} readOnly />

@@ -9,7 +9,7 @@ export default function Shop() {
         <Image
           src="/swift-shop-herov3.svg"
           alt="Hero"
-          loading="lazy"
+          height={200}
           fluid
         />
       </section>
