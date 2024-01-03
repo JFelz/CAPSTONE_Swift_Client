@@ -4,8 +4,9 @@ import { Button, InputAdornment, TextField } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import EmailIcon from '@mui/icons-material/Email';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-import { useAuth } from '../../utils/context/authContext';
+import { useRouter } from 'next/router';
 import { registerUser } from '../../utils/auth';
+import { useAuth } from '../../utils/context/authContext';
 import { createCart } from '../../api/cartData';
 // import { registerUser } from '../../utils/auth'; // Update with path to registerUser
 
@@ -16,6 +17,7 @@ function RegisterFormClient() {
     phoneNumber: null,
   });
   const { user } = useAuth();
+  const router = useRouter();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,10 +33,10 @@ function RegisterFormClient() {
     e.preventDefault();
     const payload = {
       ...registerFormData,
-      uid: user?.uid,
+      customerUid: user?.uid,
       isAdmin: false,
     };
-    registerUser(payload);
+    registerUser(payload).then(router.push('/'));
     await createCart(user?.uid);
   };
 

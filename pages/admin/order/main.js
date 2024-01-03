@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import {
   Button, Form, Modal, FloatingLabel,
 } from 'react-bootstrap';
-import { getUsersUID } from '../../../api/userData';
+import { returnUserUID } from '../../../api/userData';
 import { useAuth } from '../../../utils/context/authContext';
 import { getAllOrders, updateOrder } from '../../../api/orderData';
 import AdminOrderCard from '../../../components/admin/AdminOrderCard';
@@ -55,7 +55,7 @@ export default function OrdersPage({ editOrder }) {
   };
 
   const getUserId = () => {
-    getUsersUID(user.uid).then(setCurrentUser);
+    returnUserUID(user?.uid).then(setCurrentUser);
   };
 
   console.log('current user:', currentUser);

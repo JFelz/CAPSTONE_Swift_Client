@@ -29,7 +29,7 @@ const addToCart = (UID, ProductId) => new Promise((resolve, reject) => {
 });
 
 const createCart = (UID) => new Promise((resolve, reject) => {
-  fetch('https://localhost:7261/cart/new', {
+  fetch(`https://localhost:7261/cart/new/${UID}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
