@@ -18,6 +18,15 @@ background-color: variables.$bg-color;
   @extend %display-flex;
 }
 
+#CartProductCard {
+  display: flex;
+  flex-direction: row;
+  max-width: 40vw;
+  max-height: 100px;
+  margin: .2em;
+
+}
+
 .SplitProfile {
   @extend %display-flex;
   width: 100%;

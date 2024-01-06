@@ -23,6 +23,14 @@ body {
   padding: 1em;
 }
 
+#CartProductCard {
+  display: flex;
+  flex-direction: row;
+  max-width: 40vw;
+  max-height: 100px;
+  margin: 0.2em;
+}
+
 .SplitProfile {
   width: 100%;
 }
