@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import {
-  Box, Card, Typography, CardContent, CardActionArea, Button,
+  Card, Typography, CardContent, Button,
 } from '@mui/material';
 import { getProductsFromOrder } from '../../api/orderData';
 
@@ -12,6 +12,9 @@ export default function ClientOrderCard({ orderObj }) {
   const getProductList = () => {
     getProductsFromOrder(orderObj.id).then(setProductList);
   };
+
+  const purchasedDate = orderObj?.dateTime;
+  const formattedDate = purchasedDate ? new Date(purchasedDate).toDateString() : '';
 
   console.log('product list:', productList);
 
@@ -25,15 +28,15 @@ export default function ClientOrderCard({ orderObj }) {
         display: 'flex', height: 'auto', marginBottom: '10px', width: '100%',
       }}
       >
-        <CardContent>
-          <Typography component="div" variant="p">
+        <CardContent className="Section1">
+          <Typography className="Section1b" component="div" variant="p">
             Order#: {orderObj?.id}
           </Typography>
           <Typography component="div" variant="p">
             Status: {orderObj?.status ? 'Open' : 'Closed'}
           </Typography>
         </CardContent>
-        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+        <CardContent className="Section2">
           <CardContent sx={{ flex: '1 0 auto' }}>
             <Typography component="div" variant="p">
               {orderObj?.customerName}
@@ -42,28 +45,22 @@ export default function ClientOrderCard({ orderObj }) {
               {orderObj?.customerEmail}
             </Typography>
           </CardContent>
-        </Box>
-        <Box sx={{
-          display: 'flex', flexDirection: 'column', alignItems: 'center',
-        }}
-        >
-          <Typography component="div" variant="p">
-            Total: {orderObj?.revenue}
+        </CardContent>
+        <CardContent className="Section3">
+          <Typography className="Section3" component="div" variant="p">
+            Total: ${orderObj?.revenue}
           </Typography>
-        </Box>
-        <Box sx={{
-          display: 'flex', flexDirection: 'column', alignItems: 'center',
-        }}
-        >
-          <Typography component="div" variant="p">
-            Created on: {orderObj?.dateTime}
+        </CardContent>
+        <CardContent className="Section4">
+          <Typography className="Section4b" component="div" variant="p">
+            Purchased: {formattedDate}
           </Typography>
-        </Box>
-        <CardActionArea>
+        </CardContent>
+        <CardContent className="Section5">
           <Link passHref href={`/client/order/${orderObj.id}`}>
-            <Button size="small" variant="text">View Reciept</Button>
+            <Button className="Section5b" variant="text">View Reciept</Button>
           </Link>
-        </CardActionArea>
+        </CardContent>
       </Card>
     </>
   );

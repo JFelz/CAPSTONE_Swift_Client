@@ -6,9 +6,8 @@ import {
 } from 'react-bootstrap';
 import { createNewProducts, getAllProducts, updateProducts } from '../../../api/productData';
 import ProductCard from '../../../components/admin/AdminProductCard';
-
-import { useAuth } from '../../../utils/context/authContext';
 import { returnUserUID } from '../../../api/userData';
+import { useAuth } from '../../../utils/context/authContext';
 
 const initialState = {
   adminId: null,

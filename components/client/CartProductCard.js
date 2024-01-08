@@ -34,10 +34,7 @@ export default function CartProductCard({ orderObj, onUpdate }) {
 
   return (
     <>
-      <Card sx={{
-        display: 'flex', flexDirection: 'row', flexWrap: 'nowrap', maxWidth: '40vw', maxHeight: '100px', margin: '.2em',
-      }}
-      >
+      <Card id="CartProductCard">
         <CardMedia
           component="img"
           style={{ height: '5em', width: '5em' }}
@@ -45,22 +42,22 @@ export default function CartProductCard({ orderObj, onUpdate }) {
           alt={orderObj.title}
         />
         <CardContent sx={{
-          flex: '1 0 auto', display: 'column',
+          flex: '0 1 auto', display: 'column', width: '100%',
         }}
         >
-          <Typography className="productCardTitle" style={{ width: '15vw', fontSize: '1vw' }}>
+          <Typography className="productCardTitle" style={{ fontSize: '15px' }}>
             {orderObj.title}
           </Typography>
-          <Typography variant="subtitle1" color="text.secondary" component="div" style={{ width: '15vw', fontSize: '1vw' }}>
+          <Typography variant="subtitle1" color="text.secondary" component="div" style={{ fontSize: '12px' }}>
             {orderObj.category}
           </Typography>
         </CardContent>
         <section style={{
-          display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', width: '10em',
+          display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', width: '10%',
         }}
         >
-          <Box style={{ width: '10vw', padding: '1em' }}>
-            <Typography style={{ width: '15vw', fontSize: '1vw' }}>
+          <Box style={{ width: 'auto', padding: '1em' }}>
+            <Typography style={{ width: 'auto', fontSize: '15px' }}>
               <b>{orderObj.price}</b>
             </Typography>
           </Box>

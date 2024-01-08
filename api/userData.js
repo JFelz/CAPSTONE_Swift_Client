@@ -1,15 +1,3 @@
-// const getUsersUID = (uid) => new Promise((resolve, reject) => {
-//   fetch(`https://localhost:7261/checkuser/auth/${uid}`, {
-//     method: 'GET',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//   })
-//     .then((response) => response.text())
-//     .then(resolve)
-//     .catch(reject);
-// });
-
 const returnUserUID = (uid) => new Promise((resolve, reject) => {
   fetch(`https://localhost:7261/checkUser/auth/${uid}`, {
     method: 'GET',

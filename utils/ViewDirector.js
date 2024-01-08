@@ -6,7 +6,6 @@ import Signin from '../components/client/Signin';
 import NavBar from '../components/client/NavBar';
 import RegisterForm from '../components/client/RegisterForm';
 import FooterPage from '../components/client/Footer';
-import AdminNavBarAuth from '../components/admin/AdminNavBar';
 import { returnUserUID } from '../api/userData';
 
 const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) => {
