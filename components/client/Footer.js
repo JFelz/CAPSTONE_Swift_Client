@@ -18,10 +18,10 @@ export default function FooterPage() {
   const { user } = useAuth();
   const router = useRouter();
   const [newsLetter, setNewsLetter] = useState(initialState);
-  const [existingNLUser, setExistingNLUser] = useState();
+  const [liveEmail, setLiveEmail] = useState();
 
   const checkNLUser = () => {
-    getNewsletterUser(user?.uid).then(setExistingNLUser);
+    getNewsletterUser(user?.uid).then(setLiveEmail);
   };
 
   const handleChange = (e) => {
@@ -33,6 +33,9 @@ export default function FooterPage() {
     console.log(newsLetter);
   };
 
+  console.log('liveEmail:', liveEmail);
+  console.log('UID:', user?.uid);
+
   useEffect(() => {
     checkNLUser();
   }, []);
@@ -43,11 +46,12 @@ export default function FooterPage() {
       ...newsLetter,
       customerUid: user?.uid,
     };
-    if (existingNLUser?.customerUid) {
+    if (liveEmail?.customerUid !== user?.uid) {
       addNewsletterUser(payload).then(() => {
-        router.push('/').then(setNewsLetter(initialState));
+        router.push('/').then(setNewsLetter(initialState)).then(checkNLUser);
+        window.alert(`Thank you! Your email " ${newsLetter?.email} " has been registered.`);
       });
-    } else window.alert('You already have a registered email.');
+    } else window.alert('This account is already registered!');
   };
 
   return (
@@ -62,7 +66,6 @@ export default function FooterPage() {
             <div>
               <TextField
                 required
-                id="normal"
                 label="Email"
                 name="email"
                 value={newsLetter?.email}
@@ -77,7 +80,7 @@ export default function FooterPage() {
           </div>
         </div>
         <Image
-          src="/SwiftNL.svg"
+          src="/SwiftFooter.svg"
           alt="temp"
           style={{
             height: '18em',

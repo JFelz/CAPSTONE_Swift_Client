@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import {
+  Card, CardContent, Button, Typography,
+} from '@mui/material';
 import { getProductsFromOrder, getSingleOrder } from '../../../api/orderData';
 import ClientProdListCard from '../../../components/client/ClientProdListCard';
 
@@ -23,41 +26,45 @@ export default function ClientOrderViewPage() {
 
   return (
     <>
-      <h3> Order Details #{order?.id}</h3>
-      <h6>Created On:</h6>
-      <p>{order?.dateTime}</p>
-      <div>
-        <h6>Full Name:</h6>
-        <p>{order?.customerName}</p>
-        <h6>Email:</h6>
-        <p>{order?.customerEmail}</p>
-        <h6>Street Address:</h6>
-        <p>{order?.streetAddress}</p>
-        <h6>Town/City:</h6>
-        <p>{order?.townCity}</p>
-        <h6>Zipcode:</h6>
-        <p>{order?.zipcode}</p>
-        <h6>State:</h6>
-        <p>{order?.state}</p>
-        <h6>Country</h6>
-        <p>{order?.country}</p>
-        <h6>Phone Number:</h6>
-        <p>{order?.customerPhoneNumber}</p>
-        <h6>Payment Type:</h6>
-        <p>{order?.paymentType}</p>
-        <h6>Shipping Method: {order?.shippingMethod}</h6>
-        <li>Standard: Free (3-5 Business Days)</li>
-        <li>Express +$35 (1-2 Business Days)</li>
-        <li>Overnight +$65 (Overnight Shipping)</li>
-        <br />
-        <h5>Total: {order?.revenue}</h5>
-      </div>
-      <br />
-      <h3>Purchase History</h3>
-      <br />
-      <div>
-        {productList?.map((obj) => <ClientProdListCard key={obj.id} orderObj={obj} />)}
-      </div>
+      <Card className="ConfirmationCard">
+        <div className="ConfirmationHeader">
+          <h2> Confirmation Order #{order?.id}</h2>
+        </div>
+        <CardContent>
+          <div>
+            <h4> Purchased Products </h4>
+            {productList?.map((obj) => <ClientProdListCard key={obj.id} orderObj={obj} />)}
+          </div>
+        </CardContent>
+        <CardContent className="ConfirmationSplit">
+          <CardContent className="ConfirmationLeft">
+            <h6> Shipped To: </h6>
+            <p>{order?.customerName}</p>
+            <p>{order?.streetAddress}</p>
+            <p>{order?.townCity}</p>
+            <p>{order?.zipcode}</p>
+            <p>{order?.state}</p>
+            <p>{order?.country}</p>
+          </CardContent>
+          <CardContent className="ConfirmationRight">
+            <h6><b>Email:</b> {order?.customerEmail}</h6>
+            <h6><b>Phone Number:</b> {order?.customerPhoneNumber}</h6>
+            <h6><b>Payment Type:</b> {order?.paymentType}</h6>
+            <h6><b>Shipping Method:</b> {order?.shippingMethod}</h6>
+            <li>Standard: Free (3-5 Business Days)</li>
+            <li>Express +$35 (1-2 Business Days)</li>
+            <li>Overnight +$65 (Overnight Shipping)</li>
+            <br />
+            <h5>Total: ${order?.revenue}</h5>
+          </CardContent>
+        </CardContent>
+        <CardContent>
+          <Typography> If there are any issues, please contact customer support at 1-899-6554. </Typography>
+        </CardContent>
+        <CardContent className="ConfirmBtnSplit">
+          <Button variant="contained" style={{ backgroundColor: 'black', width: '40%' }} onClick={() => { router.push('/client/profile'); }}> Return to Order History </Button>
+        </CardContent>
+      </Card>
     </>
   );
 }

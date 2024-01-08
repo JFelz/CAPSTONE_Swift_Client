@@ -31,7 +31,7 @@ export default function ClientProdListCard({ orderObj }) {
         >
           <Box style={{ padding: '1em' }}>
             <Typography>
-              <b>{orderObj.price}</b>
+              <b>${orderObj.price}</b>
             </Typography>
           </Box>
         </section>

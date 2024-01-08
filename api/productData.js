@@ -70,8 +70,26 @@ const updateProducts = (id, payload) => new Promise((resolve, error) => {
     .catch(error.message);
 });
 
+const getProdRevList = (id) => new Promise((resolve, reject) => {
+  fetch(`https://localhost:7261/products/${id}/reviews`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(async (response) => {
+      let data;
+      if (response.ok) {
+        data = await response.json();
+        resolve(data);
+      }
+    })
+    .catch(reject);
+});
+
 export {
   getAllProducts,
+  getProdRevList,
   getSingleProducts,
   createNewProducts,
   updateProducts,
