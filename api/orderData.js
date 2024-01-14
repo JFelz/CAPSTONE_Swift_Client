@@ -95,13 +95,24 @@ const addProductToOrder = (UID) => new Promise((resolve, reject) => {
       'Content-Type': 'application/json',
     },
   })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log('Response from server:', data);
-      resolve(data);
+    .then(async (response) => {
+      console.log('Response Status:', response.status);
+      console.log('Response Headers:', response.headers);
+      let data;
+      if (response.ok) {
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          data = await response.json();
+          console.log('Response Data:', data);
+        } else {
+          // Handle non-JSON responses, e.g., plain text errors
+          data = await response.text();
+        }
+        resolve(data);
+      }
     })
     .catch((error) => {
-      console.error('Error:', error);
+      console.error('Error Response:', error);
       reject(error);
     });
 });

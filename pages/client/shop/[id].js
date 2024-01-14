@@ -88,7 +88,7 @@ export default function ClientProductViewPage() {
 
   return (
     <>
-      <section className="viewProduct-top-section">
+      <section className="ProductReturnButton">
         <div>
           <Link href="/client/shop/main" passHref>
             <Button variant="secondary"> Go Back </Button>
