@@ -36,7 +36,7 @@ function RegisterFormClient() {
       customerUid: user?.uid,
       isAdmin: false,
     };
-    registerUser(payload).then(router.push('/'));
+    registerUser(payload).then(router.push('/client/profile'));
     await createCart(user?.uid);
   };
 

@@ -138,7 +138,7 @@ export default function Cart() {
                     required
                   />
                 </Form.Group>
-                <Form.Group controlId="exampleForm.ControlInput1" className="SplitInputFields">
+                <Form.Group controlId="exampleForm.ControlInput2" className="SplitInputFields">
                   <Form.Control
                     type="textarea"
                     placeholder="Email Address"
@@ -157,7 +157,7 @@ export default function Cart() {
                   />
                 </Form.Group>
                 <Form.Label>STREET ADDRESS</Form.Label>
-                <Form.Group controlId="exampleForm.ControlInput1">
+                <Form.Group controlId="exampleForm.ControlInput3">
                   <Form.Control
                     type="textarea"
                     placeholder="Street Address"
@@ -168,7 +168,7 @@ export default function Cart() {
                   />
                 </Form.Group>
                 <Form.Label>TOWN/CITY</Form.Label>
-                <Form.Group controlId="exampleForm.ControlInput1">
+                <Form.Group controlId="exampleForm.ControlInput4">
                   <Form.Control
                     type="textarea"
                     placeholder="town/city"
@@ -179,7 +179,7 @@ export default function Cart() {
                   />
                 </Form.Group>
                 <Form.Label>ZIPCODE</Form.Label>
-                <Form.Group controlId="exampleForm.ControlInput1">
+                <Form.Group controlId="exampleForm.ControlInput5">
                   <Form.Control
                     type="number"
                     placeholder="Zip Code"

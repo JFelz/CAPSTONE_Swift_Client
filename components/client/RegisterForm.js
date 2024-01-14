@@ -2,9 +2,11 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useRouter } from 'next/router';
 import { registerUser } from '../../utils/auth'; // Update with path to registerUser
 
 function RegisterForm({ user, updateUser }) {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     bio: '',
     uid: user.uid,
@@ -13,6 +15,10 @@ function RegisterForm({ user, updateUser }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     registerUser(formData).then(() => updateUser(user.uid));
+  };
+
+  const pushProfile = () => {
+    router.push('/client/profile');
   };
 
   return (

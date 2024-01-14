@@ -1,10 +1,10 @@
-.ProfileTitle, .RenderCards, .SplitProfile, .cartSplit, .viewProduct-top-section, .viewProduct-mid-section, .viewProduct-mid-section .productSplit, .viewProduct-mid-section .productSplit .LeftSideProductPage, .viewProduct-mid-section .productSplit .RightSideProductPage, .ConfirmationCard .ConfirmationSplit, .ConfirmationCard .ConfirmBtnSplit, .FormSplit, .FormSplit .FormTitle, .FormSplit .FormLeft, .LongboardHero, .Disclaimer, #footer .footerTop, #footer .pagelinks, #footer .SocialLinks, #footer .footerBottom, #footer .footerBottom .footerBottom_2, .CarouselHeroImage, .GridContainer, .GridContainer .MainGridLeft {
+.ProfileTitle, .RenderCards, .SplitProfile, .cartSplit, .viewProduct-top-section, .viewProduct-mid-section, .viewProduct-mid-section .productSplit, .viewProduct-mid-section .productSplit .LeftSideProductPage, .viewProduct-mid-section .productSplit .RightSideProductPage, .ConfirmationCard .ConfirmationSplit, .ConfirmationCard .ConfirmBtnSplit, .FormSplit, .FormSplit .FormTitle, .FormSplit .FormLeft, .LongboardHero, .Disclaimer, #footer .footerTop, #footer .pagelinks, #footer .SocialLinks, #footer .footerBottom, #footer .footerBottom .footerBottom_2, .CarouselHeroImage, .GridContainer, .GridContainer .MainGridLeft, .Arrivals-Top-Section, .Arrivals-Mid-Section, .Arrivals-Bot-Section, .ArborCollection {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-.ConfirmationCard, .ConfirmationCard .ConfirmationHeader, .ConfirmationCard .ConfirmationMid, .ConfirmationCard .ConfirmationSplit .ConfirmationLeft, .ConfirmationCard .ConfirmationSplit .ConfirmationRight, .FormSplit .FormRight, .FormSplit .RegisterForm, .AccountDetails, .ReviewCard, .ReviewCardHeader, .ReviewCardContent, .ReviewSubmitBody, #footer, .GridContainer .MainGridRight, .Section1, .Section2, .Section3, .Section4, .Section5, .Section5b {
+.ConfirmationCard, .ConfirmationCard .ConfirmationHeader, .ConfirmationCard .ConfirmationMid, .ConfirmationCard .ConfirmationSplit .ConfirmationLeft, .ConfirmationCard .ConfirmationSplit .ConfirmationRight, .FormSplit .FormRight, .FormSplit .RegisterForm, .AccountDetails, .ReviewCard, .ReviewCardHeader, .ReviewCardContent, .ReviewSubmitBody, #footer, .GridContainer .MainGridRight, .Section1, .Section2, .Section3, .Section4, .Section5, .Section5b, .Arrivals-Section, .CollectionSection .CollectionAction .CollectionInfo {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -79,8 +79,12 @@ body {
   background-color: #C92D39;
 }
 
+.ProductReturnButton {
+  margin-top: 3em;
+}
+
 .viewProduct-top-section {
-  justify-content: flex-start;
+  justify-content: center;
   font-size: 3em;
   font-style: normal;
   margin: 3%;
@@ -290,7 +294,7 @@ body {
 .GridContainer {
   justify-content: space-between;
   padding: 5em;
-  height: 100vh;
+  height: 25%;
   width: 100%;
 }
 .GridContainer .MainGridLeft {
@@ -346,4 +350,53 @@ body {
   justify-content: center;
   align-items: center;
   width: 50%;
+}
+
+.Arrivals-Section {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.Arrivals-Top-Section {
+  width: 75%;
+  justify-content: space-between;
+}
+
+.Arrivals-Mid-Section {
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+}
+
+.Arrivals-Bot-Section {
+  width: 75%;
+  justify-content: space-evenly;
+}
+
+.ArborCollection {
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+}
+
+.CollectionSection {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  margin-top: 5em;
+  margin-bottom: 2em;
+}
+.CollectionSection .CollectionImage {
+  width: 50%;
+}
+.CollectionSection .CollectionAction {
+  width: 50%;
+  background-color: #c4c4c4;
+}
+.CollectionSection .CollectionAction .CollectionInfo {
+  justify-content: center;
+  padding: 5em;
+  height: 100%;
 }/*# sourceMappingURL=globals.css.map */
