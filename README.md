@@ -7,14 +7,10 @@
 ## Features
 
 
-![How Our Platform Works]
-
-
-
 ## Install SWIFT For Yourself
 
 
-## Planning for Bleuprint
+## Planning for SWIFT
 
 ### ERD
 
@@ -25,9 +21,7 @@
 ## Project Board
 
 
-
 ## Walkthrough Video
-
 
 
 ## Created by Jovanni Feliz
