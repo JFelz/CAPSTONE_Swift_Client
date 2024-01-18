@@ -25,7 +25,7 @@
 
 
 ## Created by Jovanni Feliz
-[View LinkedIn Page](https://www.linkedin.com/in/felizk/)
+[View LinkedIn Page](https://www.linkedin.com/in/jfeliz/)
 
 [View Instagram Page](https://www.instagram.com/jojointech/?hl=en)
 
