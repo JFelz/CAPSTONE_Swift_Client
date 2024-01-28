@@ -22,6 +22,7 @@ The goal was to incorporate CRUD functionality, sale projections, data analytics
 + Administrators can receive net sales/net profit/expenses and monitor their cashflow within their Admin dashboard.
 + Administrators can view best selling products, top category, trends, and sale projections within their Admin dashboard.
 + Administrators can view all or selected product reviews within their Admin dashboard.
++ Administrators can view all customers within their Admin dashboard.
 
 ## Install SWIFT For Yourself
 
