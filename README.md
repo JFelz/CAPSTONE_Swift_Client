@@ -2,7 +2,7 @@
 [Link to LIVE site]()
 
 ## Overview
-This application was designed to provide an online presence to a faux longbaording business equipped with data analytics, CMS tools, and an Admin dashboard. SWIFT provides a platform for customers like you to search for longboards from a variety of popular brands while eliminating the need to scour multiple sites.
+This application was designed to provide an online presence to a faux longbaording business equipped with data analytics, CMS tools, and an Admin dashboard. SWIFT provides an all-in-one platform for customers like you to search for longboards from a variety of popular brands.
 
 The goal was to incorporate CRUD functionality, sale projections, data analytics, and an overall e-commerce experience for both customers and administrators. In addition, gaining more experience and deeper understanding of C#, SQL querying (and LINQ), server-side data flow, and relational database management.
 
