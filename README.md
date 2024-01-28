@@ -11,7 +11,7 @@ The goal was to incorporate CRUD functionality, sale projections, data analytics
 + Customers can browse and filter other products on the store page.
 + Customers can view info details for each public product.
 + Customers can add products to their own cart for purchase.
-+ Customers can create an Order before completing purchases.
++ Customers can create and edit an Order before completing purchases.
 + Cart feature calculates total costs of products and additional shipping costs.
 + Customers can delete products in Cart.
 + Customers can view their purchased products in their Order History tab.
