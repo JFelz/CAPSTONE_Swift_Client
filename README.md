@@ -1,4 +1,7 @@
-# SWIFT
+![Logo]
+
+[Logo]: https://i.ibb.co/C17bX9w/Group-3507.png
+
 [Link to LIVE site]()
 
 ## Overview
@@ -57,3 +60,6 @@ The goal was to incorporate CRUD functionality, sale projections, data analytics
 
 ## Tech Stack
 
+![Tech Stack]
+
+[Tech Stack]: https://i.ibb.co/PxZ2LQb/Group-3506.png
