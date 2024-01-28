@@ -38,10 +38,9 @@ The goal was to incorporate CRUD functionality, sale projections, data analytics
 [Figma Wireframe Link](https://www.figma.com/file/A5JQGOYXT1jKDv4MttZ74m/Swift-Longboard-ECommerce?type=design&node-id=3%3A674&mode=design&t=dYRKeuGNJq0PzHgO-1)
 
 
-## Project Board
-![Sprint Board]
+## Agile Project Board
 
-[Sprint Board]: https://github.com/users/JFelz/projects/20/views/2
+[Agile Sprint Board](https://github.com/users/JFelz/projects/20/views/2)
 
 ## Walkthrough Video
 
