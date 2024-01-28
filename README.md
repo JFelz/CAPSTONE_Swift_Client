@@ -39,7 +39,9 @@ The goal was to incorporate CRUD functionality, sale projections, data analytics
 
 
 ## Project Board
+![Sprint Board]
 
+[Sprint Board]: https://github.com/users/JFelz/projects/20/views/2
 
 ## Walkthrough Video
 
