@@ -31,6 +31,8 @@ The goal was to incorporate CRUD functionality, sale projections, data analytics
 
 ### ERD
 
+[ERD Chart]: https://i.pinimg.com/originals/89/15/c2/8915c2c609e2aff8da2ed5ad4449467f.png
+
 ### Wireframe/Prototype
 [Figma Wireframe Link](https://www.figma.com/file/A5JQGOYXT1jKDv4MttZ74m/Swift-Longboard-ECommerce?type=design&node-id=3%3A674&mode=design&t=dp67FSH6slpmLlEU-1)
 
