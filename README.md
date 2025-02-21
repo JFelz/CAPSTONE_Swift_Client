@@ -23,8 +23,6 @@ The goal was to incorporate CRUD functionality, sale projections, data analytics
 + Administrators can edit/update/delete/read customer orders.
 + Administrators can create/edit/update/delete/read SWIFT products.
 
-## Install SWIFT For Yourself
-
 
 ## Planning for SWIFT
 
@@ -41,8 +39,6 @@ The goal was to incorporate CRUD functionality, sale projections, data analytics
 
 [Agile Sprint Board](https://github.com/users/JFelz/projects/20/views/2)
 
-## Walkthrough Video
-
 
 ## Created by Jovanni Feliz
 [View LinkedIn Page](https://www.linkedin.com/in/jfeliz/)
@@ -50,8 +46,6 @@ The goal was to incorporate CRUD functionality, sale projections, data analytics
 [View Instagram Page](https://www.instagram.com/jojointech/?hl=en)
 
 
-
-## Screenshots of SWIFT
 
 
 ## Tech Stack
